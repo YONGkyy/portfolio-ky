@@ -2,13 +2,19 @@
 <template>
   <div class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900">
     <!-- Hero Section -->
-    <section class="relative max-w-full mx-auto flex flex-col items-center justify-center text-center ">
+    <section
+      class="relative max-w-full mx-auto flex flex-col items-center justify-center text-center"
+    >
       <!-- Profile Card -->
-      <div class="min-h-screen flex items-center justify-center gap-12">
+      <div
+        data-aos="fade-down"
+        class="min-h-svh flex items-center justify-center gap-14"
+      >
         <div class="relative">
           <!-- Profile Image with Glow Effect -->
           <div
-            class="relative h-72 w-72 rounded-full overflow-hidden animate-float gardient-to-br from-blue-500/20 to-blue-500/20"
+            data-aos="fade-right"
+            class="relative h- w-72 rounded-full overflow-hidden animate-float gardient-to-br from-blue-500/20 to-blue-500/20"
           >
             <img
               src="/images/me-banner.png"
@@ -18,14 +24,18 @@
 
           <!-- Floating Elements -->
           <div
-            class="absolute -top-2 -right-2 w-6 h-6 bg-purple-400 rounded-full animate-pulse"
+  
+            class="absolute -top-16 -right-2 w-14 h-14 bg-purple-400 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="absolute -top-8 -right-2 w-8 h-8 bg-blue-400 rounded-full animate-pulse"
           ></div>
           <div
             class="absolute -bottom-2 -left-2 w-4 h-4 bg-blue-400 rounded-full animate-pulse delay-300"
           ></div>
         </div>
 
-        <div class="flex-1 text-center lg:text-left">
+        <div data-aos="fade-left" class="flex-1 text-center lg:text-left">
           <!-- Greeting -->
           <p class="text-purple-300 text-lg mb-4">
             Hey there, I’m
@@ -50,7 +60,7 @@
       </div>
 
       <!-- Professional Description -->
-      <div class="text-center mb-16">
+      <div data-aos="fade-up" class="text-center mb-16">
         <h2 class="text-white text-3xl lg:text-4xl font-bold mb-6">
           I'm a Web Developer
         </h2>
@@ -74,13 +84,17 @@
 
       <!-- Work Experience Section -->
       <section class="mb-20">
-        <h3 class="text-white text-2xl lg:text-3xl font-bold mb-12 text-center">
+        <h3
+          data-aos="fade-up"
+          class="text-white text-2xl lg:text-3xl font-bold mb-12 text-center"
+        >
           Work Experience
         </h3>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Project Card 1 -->
           <div
+            data-aos="fade-right"
             class="group relative bg-gradient-to-br from-purple-800/50 to-indigo-800/50 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:transform hover:scale-105"
           >
             <div class="flex items-center gap-4 mb-4">
@@ -114,6 +128,7 @@
 
           <!-- Project Card 2 -->
           <div
+            data-aos="fade-left"
             class="group relative bg-gradient-to-br from-orange-800/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-6 border border-orange-500/20 hover:border-orange-400/40 transition-all duration-300 hover:transform hover:scale-105"
           >
             <div class="flex items-center gap-4 mb-4">
@@ -147,6 +162,7 @@
 
           <!-- Project Card 3 -->
           <div
+            data-aos="fade-right"
             class="group relative bg-gradient-to-br from-blue-800/50 to-purple-800/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:transform hover:scale-105"
           >
             <div class="flex items-center gap-4 mb-4">
@@ -180,6 +196,7 @@
 
           <!-- Project Card 4 -->
           <div
+            data-aos="fade-left"
             class="group relative bg-gradient-to-br from-violet-800/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-6 border border-violet-500/20 hover:border-violet-400/40 transition-all duration-300 hover:transform hover:scale-105"
           >
             <div class="flex items-center gap-4 mb-4">
