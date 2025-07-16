@@ -13,8 +13,8 @@
 </script>
 
 <template>
-  <header class="min-h-full  bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900">
-    <div class="max-w-full mx-auto flex items-center justify-between px-8">
+  <header class="min-h-full  bg-darkPurpleHeader">
+    <div class="max-w- mx-auto flex items-center justify-between px-8">
       <!-- Logo -->
       <div class="text-white text-2xl font-bold">
         <span

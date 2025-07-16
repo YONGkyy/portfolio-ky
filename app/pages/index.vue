@@ -1,6 +1,6 @@
 <!-- pages/index.vue -->
 <template>
-  <div class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900">
+  <div class="bg-darkPurpleBody">
     <!-- Hero Section -->
     <section
       class="relative max-w-full mx-auto flex flex-col items-center justify-center text-center"
@@ -11,20 +11,23 @@
         class="min-h-svh flex items-center justify-center gap-14"
       >
         <div class="relative">
-          <!-- Profile Image with Glow Effect -->
-          <div
-            data-aos="fade-right"
-            class="relative h- w-72 rounded-full overflow-hidden animate-float gardient-to-br from-blue-500/20 to-blue-500/20"
-          >
+          <!-- Profile Image with Animated Glow -->
+          <div class="relative flex items-center justify-center w-72 h-72">
+            <!-- Animated Glow Background -->
+            <div
+              class="absolute w-full h-full rounded-full bg-deepIndigo blur-3xl opacity-60 animate-glow"
+            ></div>
+
+            <!-- Profile Image -->
             <img
               src="/images/me-banner.png"
-              class="relative h-72 rounded-3xl overflow-hidden p-1"
+              alt="Profile"
+              class="relative w-72 h-72 object-cover rounded-full  z-10"
             />
           </div>
 
           <!-- Floating Elements -->
           <div
-  
             class="absolute -top-16 -right-2 w-14 h-14 bg-purple-400 rounded-full animate-pulse"
           ></div>
           <div
