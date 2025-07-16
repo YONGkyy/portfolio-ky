@@ -7,7 +7,6 @@ export default {
         darkPurpleBody: "#11071F",
         darkPurpleHeader: "#1A0B2D",
         darkPurpleFooter: "#1A0B2D",
-        deepIndigo: "#320F85",
         lightPurple: "#A78BFA",
         lightPurpleHover: "#C4B5FD",
       },
