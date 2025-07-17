@@ -55,7 +55,7 @@
         </div>
 
         <!-- Links & Info -->
-        <div class="flex flex-wrap gap-8 mt-8 md:mt-0 md:flex-1 justify-end">
+        <div class="flex flex-wrap gap-2 md:gap-8 mt-8 md:mt-0 md:flex-1 justify-end">
           <!-- Navigation -->
           <div data-aos="fade-up" class="min-w-[150px]">
             <h4 class="text-lg font-semibold mb-4">Explore</h4>
