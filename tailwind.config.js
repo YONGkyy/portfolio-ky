@@ -12,8 +12,7 @@ export default {
         darkPurpleBody: "#11071F",
         darkPurpleHeader: "#1A0B2D",
         darkPurpleFooter: "#1A0B2D",
-        lightPurple: "#A78BFA",
-        lightPurpleHover: "#C4B5FD",
+        lightPurpleFooter: "#2B0D3E",
       },
       keyframes: {
         glow: {
