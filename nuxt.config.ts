@@ -1,21 +1,37 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  app: {
-    baseURL: "/", // for root GitHub Pages domain like YONGkyy.github.io
-  },
-  nitro: {
-    preset: "static",
-    prerender: {
-      routes: ["/", "/404"], // optionally add 404
-      fallback: "404.html",
-    },
-  },
-
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "nuxt-aos"],
   css: ["@/assets/css/main.css"],
+
+  app: {
+    head: {
+      title: "Yong @ let talk about it",
+      meta: [
+        { charset: "utf-8" },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: "A personal blog by Yong, sharing thoughts and experiences.",
+        },
+        {
+          name: "keywords",
+          content: "Yong, personal blog, technology, lifestyle, travel",
+        },
+      ],
+    },
+  },
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false,
+    },
+  },
+
   aos: {
     // Global settings:
     disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
