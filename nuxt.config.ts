@@ -1,5 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
+  app: {
+    baseURL: "/", // for root GitHub Pages domain like YONGkyy.github.io
+  },
+  nitro: {
+    preset: "static",
+  },
+
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "nuxt-aos"],
