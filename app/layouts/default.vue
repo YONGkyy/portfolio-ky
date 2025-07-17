@@ -7,7 +7,7 @@ import appHeader from './header.vue';
   <div>
     <appHeader />
 
-    <main class="min-h-screen bg-white">
+    <main class="min-h-screen max-w-full bg-white">
       <NuxtPage />
     </main>
 

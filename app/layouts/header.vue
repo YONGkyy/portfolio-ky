@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <header class="min-h-full bg-darkPurpleHeader sticky top-0 z-50">
+  <header class="min-h-full  bg-darkPurpleHeader sticky top-0 z-50">
     <div class="flex items-center justify-between px-16">
       <!-- Logo -->
       <div class="text-white text-2xl font-bold">
