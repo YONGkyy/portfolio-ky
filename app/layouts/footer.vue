@@ -19,7 +19,7 @@
               <div class="flex space-x-3 mt-3">
                 <!-- Facebook -->
                 <a
-                  href="https://facebook.com/yourusername"
+                  href="https://www.facebook.com/yong.kawaii"
                   class="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-blue-400 hover:shadow-[0_0_12px_#3b82f6] transition duration-300"
                 >
                   <i class="fab fa-facebook-f"></i>
@@ -35,10 +35,11 @@
 
                 <!-- Website / Link -->
                 <a
-                  href="https://yourwebsite.com"
+                  href="https://www.linkedin.com/in/keo-yinyong-396277330/"
                   class="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-purple-400 hover:shadow-[0_0_12px_#a855f7] transition duration-300"
                 >
-                  <i class="fas fa-link"></i>
+                <i class="fab fa-linkedin-in"></i>
+
                 </a>
               </div>
             </div>
