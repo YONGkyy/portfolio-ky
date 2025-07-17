@@ -1,0 +1,25 @@
+@import "background.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Star background pattern */
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+.bg-stars {
+    background: radial-gradient(#ffffff11 1px, transparent 1px),
+        radial-gradient(#ffffff11 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    animation: twinkle 6s infinite;
+}

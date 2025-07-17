@@ -8,17 +8,20 @@
 </script>
 
 <template>
-  <div class="bg-darkPurpleBody">
+  <div class="bg-darkPurpleBody galaxy">
+    <!-- Background Animation -->
+    <div class="main"></div>
     <div class="geometric-background" id="geometric-background"></div>
     <div class="particles" id="particles"></div>
+
     <!-- Hero Section -->
     <section
-      class=" relative w-full mx-auto flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
+      class="relative w-full mx-auto flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
     >
       <!-- Profile Card -->
       <div
         data-aos="fade-up"
-        class= " min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0"
+        class="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0"
       >
         <!-- Profile Image Section -->
         <div data-aos="fade-right" class="relative order-1 lg:order-1">
@@ -57,13 +60,17 @@
           class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-2xl"
         >
           <!-- Greeting -->
-          <p class="text-purple-300 text-lg sm:text-xl mb-4">
+          <p
+            data-aos="fade-down"
+            class="text-purple-300 text-lg sm:text-xl mb-4"
+          >
             Hey there, I'm
             <span class="text-purple-400 font-semibold">Yinyong</span>
           </p>
 
           <!-- Main Title -->
           <h1
+            data-aos="fade-up"
             class="text-white text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
           >
             Crafting Visual Experiences<br class="hidden sm:block" />
@@ -74,6 +81,7 @@
           </h1>
 
           <p
+            data-aos="fade-right"
             class="text-gray-300 text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0 px-4 sm:px-0"
           >
             I'm a passionate UI/UX and web designer who believes that strong
@@ -134,11 +142,182 @@
         </div>
       </div>
 
+          <!-- Knowledge Section -->
+      <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
+        <h3
+          data-aos="fade-down"
+          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex relative z-10"
+        >
+          Knowledge and Skills
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <!-- Card 1 -->
+          <div
+            data-aos="fade-right"
+            class="relative rounded-2xl overflow-hidden p-[1px] group hover:scale-105 transition-transform duration-500"
+          >
+            <!-- Galaxy Background -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-black animate-[pulse_6s_ease-in-out_infinite] opacity-60 blur-[24px] z-0"
+            ></div>
+
+            <!-- Glass Frosted Card -->
+            <div
+              class="relative z-10 bg-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl p-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-500"
+            >
+              <!-- Icon -->
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg mb-6"
+              >
+                <svg
+                  class="w-7 h-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2L2 7V10C2 16 6 21.5 12 23C18 21.5 22 16 22 10V7L12 2Z"
+                  />
+                </svg>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-white text-2xl font-semibold mb-3">HTML & CSS</h3>
+
+              <!-- Description -->
+              <p class="text-purple-200 text-sm leading-relaxed mb-6">
+                Build modern UI with stunning design and layout flexibility
+                using HTML & CSS.
+              </p>
+
+              <!-- Button -->
+              <button
+                class="text-purple-300 hover:text-purple-100 transition-colors font-semibold text-sm"
+              >
+                LEARN MORE
+              </button>
+            </div>
+          </div>
+
+          <!-- Repeat the same style for other cards, changing icon & text -->
+
+          <!-- Card 2 -->
+          <div
+            data-aos="fade-left"
+            class="relative rounded-2xl overflow-hidden p-[1px] group hover:scale-105 transition-transform duration-500"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-orange-900 via-red-900 to-black animate-[pulse_6s_ease-in-out_infinite] opacity-60 blur-[24px] z-0"
+            ></div>
+            <div
+              class="relative z-10 bg-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl p-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-500"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-tr from-orange-500 to-red-600 flex items-center justify-center shadow-lg mb-6"
+              >
+                <svg
+                  class="w-7 h-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-white text-2xl font-semibold mb-3">JavaScript</h3>
+              <p class="text-purple-200 text-sm leading-relaxed mb-6">
+                Interactive and dynamic client-side scripting for rich
+                experiences.
+              </p>
+              <button
+                class="text-orange-300 hover:text-orange-100 transition-colors font-semibold text-sm"
+              >
+                LEARN MORE
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            data-aos="fade-right"
+            class="relative rounded-2xl overflow-hidden p-[1px] group hover:scale-105 transition-transform duration-500"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black animate-[pulse_6s_ease-in-out_infinite] opacity-60 blur-[24px] z-0"
+            ></div>
+            <div
+              class="relative z-10 bg-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl p-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-500"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center shadow-lg mb-6"
+              >
+                <svg
+                  class="w-7 h-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9.5 3A6.5 6.5 0 0 1 16 9.5C16 11.11 15.41 12.59 14.44 13.73L14.71 14H15.5L20.5 19L19 20.5L14 15.5V14.71L13.73 14.44C12.59 15.41 11.11 16 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3M9.5 5C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-white text-2xl font-semibold mb-3">Vue 3</h3>
+              <p class="text-purple-200 text-sm leading-relaxed mb-6">
+                Modern frontend framework for building fast and reactive web
+                apps.
+              </p>
+              <button
+                class="text-blue-300 hover:text-blue-100 transition-colors font-semibold text-sm"
+              >
+                LEARN MORE
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            data-aos="fade-left"
+            class="relative rounded-2xl overflow-hidden p-[1px] group hover:scale-105 transition-transform duration-500"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-pink-900 via-violet-900 to-black animate-[pulse_6s_ease-in-out_infinite] opacity-60 blur-[24px] z-0"
+            ></div>
+            <div
+              class="relative z-10 bg-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl p-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-500"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center shadow-lg mb-6"
+              >
+                <svg
+                  class="w-7 h-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-white text-2xl font-semibold mb-3">Nuxt.js</h3>
+              <p class="text-purple-200 text-sm leading-relaxed mb-6">
+                Meta-framework for Vue to build SSR-ready performant websites.
+              </p>
+              <button
+                class="text-pink-300 hover:text-pink-100 transition-colors font-semibold text-sm"
+              >
+                LEARN MORE
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Work Experience Section -->
       <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
         <h3
-          data-aos="fade-up"
-          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12"
+          data-aos="fade-down"
+          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex text-start relative z-10"
         >
           Work Experience
         </h3>
@@ -165,7 +344,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <h4 class="text-white font-semibold text-sm sm:text-base mb-1">
-                  CIB on the Mobile
+                  Web Developer at Norton University
                 </h4>
                 <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
                   Take your client onboard seamlessly by our amazing tool of

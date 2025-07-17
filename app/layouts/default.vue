@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import appFooter from './footer.vue';
 import appHeader from './header.vue';
-
 </script>
 
 <template>
-  <div >
+  <div>
     <appHeader />
 
     <main class="min-h-screen bg-white">
-      <slot />
+      <NuxtPage />
     </main>
 
     <appFooter />
