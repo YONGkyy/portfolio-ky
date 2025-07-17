@@ -9,7 +9,7 @@
             <img
               src="/images/me-banner.png"
               alt="Logo"
-              class="w-10 h-10 rounded-full border-2 border-pink-500"
+              class="w-20 h-20 rounded-full border-2 border-pink-500"
             />
 
             <div class="flex flex-col">
@@ -55,11 +55,11 @@
         </div>
 
         <!-- Links & Info -->
-        <div class="flex flex-wrap gap-2 md:gap-8 mt-8 md:mt-0 md:flex-1 justify-end">
+        <div class="flex  gap-3 md:gap-8 mt-8 md:mt-0 md:flex-1 md:justify-end">
           <!-- Navigation -->
-          <div data-aos="fade-up" class="min-w-[150px]">
+          <div data-aos="fade-up" class="md:min-w-[150px]">
             <h4 class="text-lg font-semibold mb-4">Explore</h4>
-            <ul class="space-y-2">
+            <ul class="md:space-y-2">
               <li>
                 <NuxtLink to="#banner" class="text-gray-400 hover:text-white"
                   >Home</NuxtLink
@@ -76,12 +76,12 @@
                 >
               </li>
               <li>
-                <NuxtLink to="/resume" class="text-gray-400 hover:text-white"
+                <NuxtLink to="/" class="text-gray-400 hover:text-white"
                   >Resume</NuxtLink
                 >
               </li>
               <li>
-                <NuxtLink to="/contact" class="text-gray-400 hover:text-white"
+                <NuxtLink to="/" class="text-gray-400 hover:text-white"
                   >Contact</NuxtLink
                 >
               </li>
@@ -89,9 +89,9 @@
           </div>
 
           <!-- Services -->
-          <div data-aos="fade-up" class="min-w-[150px]">
+          <div data-aos="fade-up" class="md:min-w-[150px]">
             <h4 class="text-lg font-semibold mb-4">What I Do</h4>
-            <ul class="space-y-2">
+            <ul class="md:space-y-2">
               <li><span class="text-gray-400">Web Development</span></li>
               <li><span class="text-gray-400">UI/UX Design</span></li>
               <li><span class="text-gray-400">Responsive Design</span></li>
@@ -99,9 +99,9 @@
           </div>
 
           <!-- Contact Info -->
-          <div data-aos="fade-left" class="min-w-[200px]">
+          <div data-aos="fade-left" class="md:min-w-[200px]">
             <h4 class="text-lg font-semibold mb-4">Contact</h4>
-            <div class="text-gray-400 text-sm space-y-2">
+            <div class="text-gray-400 text-sm md:space-y-2">
               <p>
                 <i class="fas fa-envelope mr-2 text-purple-400"></i
                 >yongkeo9@gmail.com
@@ -110,9 +110,9 @@
                 <i class="fas fa-map-marker-alt mr-2 text-purple-400"></i>Phnom
                 Penh, Cambodia
               </p>
-              <p>
+              <!-- <p>
                 <i class="fas fa-phone mr-2 text-purple-400"></i>+855 12 345 678
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -129,10 +129,10 @@
           reserved.
         </p>
         <div class="flex space-x-4">
-          <NuxtLink to="/privacy" class="text-gray-400 hover:text-white text-sm"
+          <NuxtLink to="/" class="text-gray-400 hover:text-white text-sm"
             >Privacy</NuxtLink
           >
-          <NuxtLink to="/terms" class="text-gray-400 hover:text-white text-sm"
+          <NuxtLink to="/" class="text-gray-400 hover:text-white text-sm"
             >Terms</NuxtLink
           >
         </div>

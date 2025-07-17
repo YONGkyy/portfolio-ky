@@ -1,10 +1,52 @@
-<script setup>
+<script setup lang="ts">
   import { onMounted } from "vue";
   import { initBackground } from "@/utils/background.js";
 
   onMounted(() => {
     initBackground();
   });
+
+  const techs = [
+    { name: "HTML", class: "html", icon: "fa-html5", color: "#e44d26" },
+    { name: "CSS", class: "css", icon: "fa-css3", color: "#264de4" },
+    { name: "JavaScript", class: "js", icon: "fa-js", color: "#f0db4f" },
+    { name: "Vue", class: "vue", icon: "fa-vuejs", color: "#42b883" },
+    {
+      name: "Nuxt",
+      class: "nuxt",
+      image: "/images/nuxt.svg",
+      color: "#00c58e",
+    },
+    { name: "PHP", class: "php", icon: "fa-php", color: "#777bb3" },
+    { name: "Laravel", class: "laravel", icon: "fa-laravel", color: "#ff2d20" },
+    { name: "MySQL", class: "mysql", text: "MySQL", color: "#00758f" },
+    {
+      name: "Github",
+      class: "github ",
+      icon: "fa-github",
+      color: "#33333",
+    },
+    {
+      name: "Figma",
+      class: "figma ",
+      icon: "fa-figma",
+      color: "#f24e1e",
+    },
+  ];
+
+  // Floating position & animation classes for icons
+  const floatClasses = [
+    "top-0 left-1/2 -translate-x-1/2 animate-float-slow",
+    "top-1/4 left-[80%] animate-float-fast",
+    "top-[70%] left-[90%] animate-float-medium",
+    "bottom-0 left-1/2 -translate-x-1/2 animate-float-fast",
+    "bottom-1/4 left-[10%] animate-float-slow",
+    "top-1/2 left-0 -translate-y-1/2 animate-float-medium",
+    "top-0 left-[20%] animate-float-medium",
+    "bottom-0 right-[20%] animate-float-slow",
+    "top-[20%] left-[20%] animate-float-medium",
+    "top-[40%] right-[5%] animate-float-fast",
+  ];
 </script>
 
 <template>
@@ -20,9 +62,9 @@
     >
       <!-- Profile Card -->
       <section
-      id="banner"
+        id="banner"
         data-aos="fade-up"
-        class="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0"
+        class="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0 relative"
       >
         <!-- Profile Image Section -->
         <div data-aos="fade-right" class="relative order-1 lg:order-1">
@@ -41,6 +83,33 @@
               alt="Profile"
               class="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-cover rounded-full z-10"
             />
+
+            <!-- Floating Tech Icons -->
+            <div
+              class="absolute top-1/2 left-1/2 w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
+            >
+              <span
+                v-for="(tech, index) in techs"
+                :key="tech.name"
+                :class="[
+                  'absolute floating-icon',
+                  floatClasses[index % floatClasses.length],
+                ]"
+                :style="{ color: tech.color }"
+              >
+                <template v-if="tech.image">
+                  <img :src="tech.image" :alt="tech.name" class="w-8 h-8" />
+                </template>
+
+                <template v-else-if="tech.icon">
+                  <i :class="`fa-brands ${tech.icon} text-3xl `"></i>
+                </template>
+
+                <template v-else>
+                  {{ tech.text }}
+                </template>
+              </span>
+            </div>
           </div>
 
           <!-- Floating Elements - Adjusted for mobile -->
@@ -56,6 +125,7 @@
         </div>
 
         <!-- Text Content Section -->
+        <!-- Text Content Section -->
         <div
           data-aos="fade-left"
           class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-2xl"
@@ -67,6 +137,14 @@
           >
             Hey there, I'm
             <span class="text-purple-400 font-semibold">Yinyong</span>
+          </p>
+
+          <!-- Personal Tagline -->
+          <p
+            data-aos="fade-up"
+            class="text-white text-xl sm:text-2xl font-semibold mb-6"
+          >
+            I'm a Web Developer
           </p>
 
           <!-- Main Title -->
@@ -81,6 +159,7 @@
             >
           </h1>
 
+          <!-- Description Paragraph -->
           <p
             data-aos="fade-right"
             class="text-gray-300 text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0 px-4 sm:px-0"
@@ -89,6 +168,37 @@
             visuals and thoughtful design can tell powerful stories. Let's make
             your ideas stand out beautifully.
           </p>
+
+          <!-- Social Media Icons -->
+          <div
+            data-aos="fade-up"
+            class="mt-6 flex justify-center lg:justify-start gap-6 flex-wrap"
+          >
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              class="social-icon text-blue-500 hover:text-blue-400"
+              aria-label="Facebook"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://t.me/yourusername"
+              target="_blank"
+              class="social-icon text-cyan-400 hover:text-cyan-300"
+              aria-label="Telegram"
+            >
+              <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yourprofile"
+              target="_blank"
+              class="social-icon text-blue-600 hover:text-blue-500 animate-float-fast"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -143,10 +253,10 @@
         </div>
       </div>
 
-          <!-- Knowledge Section -->
-      <section  class="mb-20 w-full max-w-6xl px-4 sm:px-6">
+      <!-- Knowledge Section -->
+      <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
         <h3
-        id="skills"
+          id="skills"
           data-aos="fade-down"
           class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex relative z-10"
         >
@@ -316,17 +426,17 @@
       </section>
 
       <!-- Work Experience Section -->
-      <section  class="mb-20 w-full max-w-6xl px-4 sm:px-6">
+      <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
         <h3
-        id="experience"
+          id="experience"
           data-aos="fade-down"
-          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex  relative z-10"
+          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex relative z-10"
         >
           Work Experience
         </h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <!-- Card 1 -->
+          <!-- Card 1 -->
           <div
             data-aos="fade-right"
             class="relative rounded-2xl overflow-hidden p-[1px] group hover:scale-105 transition-transform duration-500"
@@ -356,7 +466,9 @@
               </div>
 
               <!-- Title -->
-              <h3 class="text-white text-2xl font-semibold mb-3">Web Developer at Norton University</h3>
+              <h3 class="text-white text-2xl font-semibold mb-3">
+                Web Developer at Norton University
+              </h3>
 
               <!-- Description -->
               <p class="text-purple-200 text-sm leading-relaxed mb-6">
@@ -486,10 +598,10 @@
           </div>
         </div>
       </section>
-     <!-- Projects Section -->
-      <section  class="mb-20 w-full max-w-6xl px-4 sm:px-6">
+      <!-- Projects Section -->
+      <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
         <h3
-        id="projects"
+          id="projects"
           data-aos="fade-down"
           class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex text-start relative z-10"
         >
@@ -642,7 +754,6 @@
           </div>
         </div>
       </section>
-
     </section>
   </div>
 </template>
