@@ -1,14 +1,24 @@
-<!-- pages/index.vue -->
+<script setup>
+  import { onMounted } from "vue";
+  import { initBackground } from "@/utils/background.js";
+
+  onMounted(() => {
+    initBackground();
+  });
+</script>
+
 <template>
   <div class="bg-darkPurpleBody">
+    <div class="geometric-background" id="geometric-background"></div>
+    <div class="particles" id="particles"></div>
     <!-- Hero Section -->
     <section
-      class="relative w-full mx-auto flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8"
+      class=" relative w-full mx-auto flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
     >
       <!-- Profile Card -->
       <div
         data-aos="fade-up"
-        class="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0"
+        class= " min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 py-8 lg:py-0"
       >
         <!-- Profile Image Section -->
         <div data-aos="fade-right" class="relative order-1 lg:order-1">
@@ -75,7 +85,7 @@
 
       <!-- Professional Description -->
       <div
-        class="text-center mb-16 px-4 sm:px-6 flex flex-col-reverse lg:flex-row justify-between items-center gap-12"
+        class="text-center mb-16 px-4 sm:px-6 flex flex-col lg:flex-row justify-between items-center gap-12"
       >
         <div
           data-aos="fade-right"
@@ -108,12 +118,12 @@
 
         <div
           data-aos="fade-left"
-          class="flex-1 text-center lg:text-left order-1 lg:order-2 max-w-2xl "
+          class="flex-1 text-center lg:text-left order-1 lg:order-2 max-w-2xl"
         >
-           <!-- Animated Glow Background -->
-            <div
-              class="absolute w-full h-full rounded-full bg-indigo-900 blur-3xl opacity-60 animate-glow "
-            ></div>
+          <!-- Animated Glow Background -->
+          <div
+            class="absolute w-full h-full rounded-full bg-indigo-900 blur-3xl opacity-60 animate-glow"
+          ></div>
 
           <!-- Profile Image -->
           <img
@@ -128,7 +138,7 @@
       <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
         <h3
           data-aos="fade-up"
-          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 text-center"
+          class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12"
         >
           Work Experience
         </h3>
@@ -280,6 +290,5 @@
         </div>
       </section>
     </section>
-
   </div>
 </template>

@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./components/**/*.{vue,js}",
+    "./layouts/**/*.{vue,js}",
+    "./pages/**/*.{vue,js}",
+    "./app.vue",
+  ],
   theme: {
     extend: {
       colors: {
@@ -14,7 +19,6 @@ export default {
         glow: {
           "0%, 100%": { transform: "scale(1)", opacity: "0.6" },
           "50%": { transform: "scale(1.1)", opacity: "0.8" },
-
         },
       },
       animation: {
