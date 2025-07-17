@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "static",
+    prerender: {
+      routes: ["/", "/404"], // optionally add 404
+      fallback: "404.html",
+    },
   },
 
   compatibilityDate: "2025-05-15",
