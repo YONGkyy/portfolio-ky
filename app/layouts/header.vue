@@ -10,7 +10,7 @@
 
 <template>
   <header
-    class="min-h-full bg-darkPurpleHeader sticky top-0 z-50 overflow-x-hidden"
+    class="min-h-full bg-darkPurpleHeader sticky top-0 z-50 shadow-lg "
   >
     <div class="flex items-center justify-between px-4 md:px-16">
       <!-- Logo -->

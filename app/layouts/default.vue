@@ -4,9 +4,9 @@ import appHeader from './header.vue';
 </script>
 
 <template>
-   <div class="overflow-x-hidden">
+   <div >
     <appHeader />
-    <main class="min-h-screen">
+    <main class="min-h-screen ">
       <slot />
     </main>
     <appFooter />

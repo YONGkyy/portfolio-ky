@@ -46,7 +46,7 @@
 </script>
 
 <template>
-  <div class="bg-darkPurpleBody galaxy w-full overflow-x-hidden">
+  <div class="bg-darkPurpleBody galaxy ">
     <!-- Background Animation -->
     <div class="main"></div>
 

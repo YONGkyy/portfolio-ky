@@ -1,5 +1,9 @@
 
 /* Galaxy background */
+html,
+body {
+    overflow-x: hidden !important;
+}
 
 .main {
     position: fixed;
