@@ -1,10 +1,6 @@
 <script setup lang="ts">
   import { onMounted } from "vue";
-  import { initBackground } from "@/utils/background.js";
 
-  onMounted(() => {
-    initBackground();
-  });
 
   const techs = [
     { name: "HTML", class: "html", icon: "fa-html5", color: "#e44d26" },
@@ -36,25 +32,23 @@
 
   // Floating position & animation classes for icons
   const floatClasses = [
-    "top-0 left-1/2 -translate-x-1/2 animate-float-slow",
-    "top-1/4 left-[80%] animate-float-fast",
-    "top-[70%] left-[90%] animate-float-medium",
-    "bottom-0 left-1/2 -translate-x-1/2 animate-float-fast",
+    "top-[30%] left-10 md:top-0 md:left-1/2 -translate-x-1/2 animate-float-slow",
+    "top-1/3 left-[70%] animate-float-fast",
+    "top-[70%] left-[80%] md:left-[90%] animate-float-medium",
+    "bottom-10 md:bottom-0 left-1/3  -translate-x-1/2 animate-float-fast",
     "bottom-1/4 left-[10%] animate-float-slow",
-    "top-1/2 left-0 -translate-y-1/2 animate-float-medium",
-    "top-0 left-[20%] animate-float-medium",
-    "bottom-0 right-[20%] animate-float-slow",
+    "top-1/2 left-5 md:left-0 -translate-y-1/2 animate-float-medium",
+    "top-[80%] md:top-0 left-[10%] animate-float-medium",
+    "bottom-10 md:bottom-0 right-[20%] animate-float-slow",
     "top-[20%] left-[20%] animate-float-medium",
     "top-[40%] right-[5%] animate-float-fast",
   ];
 </script>
 
 <template>
-  <div class="bg-darkPurpleBody galaxy">
+  <div class="bg-darkPurpleBody galaxy w-full overflow-x-hidden">
     <!-- Background Animation -->
     <div class="main"></div>
-    <div class="geometric-background" id="geometric-background"></div>
-    <div class="particles" id="particles"></div>
 
     <!-- Hero Section -->
     <section
@@ -70,7 +64,7 @@
         <div data-aos="fade-right" class="relative order-1 lg:order-1">
           <!-- Profile Image with Animated Glow -->
           <div
-            class="relative flex items-center justify-center w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
+            class="relative flex items-center justify-center w-44 h-44 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
           >
             <!-- Animated Glow Background -->
             <div
@@ -125,7 +119,6 @@
         </div>
 
         <!-- Text Content Section -->
-        <!-- Text Content Section -->
         <div
           data-aos="fade-left"
           class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-2xl"
@@ -175,7 +168,7 @@
             class="mt-6 flex justify-center lg:justify-start gap-6 flex-wrap"
           >
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/yong.kawaii"
               target="_blank"
               class="social-icon text-blue-500 hover:text-blue-400"
               aria-label="Facebook"
@@ -183,7 +176,7 @@
               <i class="fab fa-facebook-f"></i>
             </a>
             <a
-              href="https://t.me/yourusername"
+              href="https://t.me/yong_24"
               target="_blank"
               class="social-icon text-cyan-400 hover:text-cyan-300"
               aria-label="Telegram"
@@ -191,12 +184,20 @@
               <i class="fab fa-telegram-plane"></i>
             </a>
             <a
-              href="https://www.linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/keo-yinyong-396277330/"
               target="_blank"
               class="social-icon text-blue-600 hover:text-blue-500 animate-float-fast"
               aria-label="LinkedIn"
             >
               <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://github.com/YONGKyy"
+              target="_blank"
+              class="social-icon text-white hover:text-slate-400 animate-float-fast"
+              aria-label="Github"
+            >
+              <i class="fab fa-github"></i>
             </a>
           </div>
         </div>

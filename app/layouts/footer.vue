@@ -38,8 +38,13 @@
                   href="https://www.linkedin.com/in/keo-yinyong-396277330/"
                   class="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-purple-400 hover:shadow-[0_0_12px_#a855f7] transition duration-300"
                 >
-                <i class="fab fa-linkedin-in"></i>
-
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="https://github.com/YONGKyy"
+                  class="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-slate-300 hover:shadow-[0_0_12px_#a855f7] transition duration-300"
+                >
+                  <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
@@ -55,7 +60,7 @@
         </div>
 
         <!-- Links & Info -->
-        <div class="flex  gap-3 md:gap-8 mt-8 md:mt-0 md:flex-1 md:justify-end">
+        <div class="flex gap-3 md:gap-8 mt-8 md:mt-0 md:flex-1 md:justify-end">
           <!-- Navigation -->
           <div data-aos="fade-up" class="md:min-w-[150px]">
             <h4 class="text-lg font-semibold mb-4">Explore</h4>
