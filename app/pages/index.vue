@@ -37,11 +37,11 @@ import Banner from '~/components/banner.vue';
 
     <!-- Hero Section -->
     <section
-      class="relative w-full mx-auto flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
+      class="relative w-full mx-auto m flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
     >
 
       <!-- Profile Card -->
-      <Banner  />
+      <Banner  class="mt-20"/>
 
       <!-- Professional Description -->
       <div
