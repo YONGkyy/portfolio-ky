@@ -1,3 +1,7 @@
+
+<script setup lang="ts"></script>
+
+
 <template>
   <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
     <h3
