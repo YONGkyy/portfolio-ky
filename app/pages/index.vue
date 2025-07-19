@@ -84,12 +84,13 @@ import Banner from '~/components/banner.vue';
           <div
             class="absolute w-full h-full rounded-full bg-indigo-900 blur-3xl opacity-60 animate-glow"
           ></div>
+          
 
           <!-- Profile Image -->
           <img
-            src="/images/pf1.jpg"
+            src="/images/pf6.jpg"
             alt=""
-            class="h-56 sm:w-64 sm:h-64 lg:w-96 lg:h-96 object-cover rounded-2xl ml-8 shadow-lg relative z-10"
+            class="w-64 h-64 sm:w-64 sm:h-64 lg:w-96 lg:h-96 object-cover justify-center rounded-2xl ml-8 shadow-lg relative z-10"
           />
         </div>
       </div>
