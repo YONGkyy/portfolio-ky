@@ -49,7 +49,7 @@
                 class="bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-full px-4 py-2 border border-purple-300/30"
               >
                 <span class="text-purple-200 text-sm font-semibold"
-                  >2022 - 2024</span
+                  >2023 - present</span
                 >
               </div>
               <p class="text-purple-300 text-sm mt-1">2 Years</p>
