@@ -63,6 +63,24 @@
               academic and administrative purposes, serving thousands of
               students and faculty members at Norton University.
             </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <span class="text-purple-200 text-sm">Student Management System</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-indigo-400 rounded-full"></div>
+                <span class="text-purple-200 text-sm">Course Registration Portal</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                <span class="text-purple-200 text-sm">Academic Records System</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                <span class="text-purple-200 text-sm">Faculty Dashboard</span>
+              </div>
+            </div>
           </div>
 
           <!-- Key Achievements -->
@@ -142,6 +160,25 @@
             </div>
           </div>
 
+          <!-- Performance Metrics -->
+          <div class="mb-8">
+            <h4 class="text-white text-lg font-semibold mb-4">Key Achievements</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-white/5 rounded-lg p-4 border border-white/10">
+                <div class="text-2xl font-bold text-green-400 mb-1">99.9%</div>
+                <div class="text-purple-200 text-sm">System Uptime</div>
+              </div>
+              <div class="bg-white/5 rounded-lg p-4 border border-white/10">
+                <div class="text-2xl font-bold text-blue-400 mb-1">40%</div>
+                <div class="text-purple-200 text-sm">Performance Boost</div>
+              </div>
+              <div class="bg-white/5 rounded-lg p-4 border border-white/10">
+                <div class="text-2xl font-bold text-purple-400 mb-1">5000+</div>
+                <div class="text-purple-200 text-sm">Active Users</div>
+              </div>
+            </div>
+          </div>
+
           <!-- Action Button -->
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-4">
@@ -155,9 +192,13 @@
                 <i class="fas fa-briefcase text-purple-400"></i>
                 <span class="text-purple-200 text-sm">Full-time</span>
               </div>
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-calendar text-purple-400"></i>
+                <span class="text-purple-200 text-sm">2+ Years</span>
+              </div>
             </div>
             <button
-              class="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              class="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover-lift"
             >
               View Details
             </button>

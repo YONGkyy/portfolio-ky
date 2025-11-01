@@ -4,11 +4,16 @@ import appHeader from './header.vue';
 </script>
 
 <template>
-   <div >
+  <div>
+    <!-- Header OUTSIDE overflow wrapper -->
     <appHeader />
-    <main class="min-h-screen ">
-      <slot />
-    </main>
-    <appFooter />
+    
+    <!-- Main content WITH overflow wrapper -->
+    <div class="overflow-x-hidden">
+      <main class="min-h-screen">
+        <slot />
+      </main>
+      <appFooter />
+    </div>
   </div>
 </template>

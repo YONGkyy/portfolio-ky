@@ -5,16 +5,26 @@
       data-aos="fade-down"
       class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex text-start relative z-10"
     >
-      Projects
+      Featured Projects
     </h3>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 md:gap-6">
-      <!-- Project Card 1 -->
+      <!-- Project Card 1: Norton University Portal -->
       <div
         data-aos="fade-right"
-        class="group relative bg-gradient-to-br from-purple-800/50 to-indigo-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-500/20 md:hover:border-purple-400/40 transition-all duration-300 md:hover:transform md:hover:scale-105"
+        class="group relative bg-gradient-to-br from-purple-800/50 to-indigo-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-500/20 md:hover:border-purple-400/40 transition-all duration-500 md:hover:transform md:hover:scale-105 overflow-hidden"
       >
-        <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
+        <!-- Project Image -->
+        <div class="relative mb-4 rounded-lg overflow-hidden">
+          <img 
+            src="/images/pf1.jpg" 
+            alt="Norton University Student Portal"
+            class="w-full h-32 sm:h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4 mb-4">
           <div
             class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0"
           >
@@ -23,28 +33,18 @@
               fill="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                d="M12 2L2 7V10C2 16 6 21.5 12 23C18 21.5 22 16 22 10V7L12 2Z"
-              />
+              <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <h4
-              class="text-white font-semibold text-sm sm:text-base mb-1 break-words"
-            >
-              Web Developer at Norton University
+            <h4 class="text-white font-semibold text-sm sm:text-base mb-2 break-words">
+              Norton University Student Portal
             </h4>
-            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-              Take your client onboard seamlessly by our amazing tool of digital
-              onboard process.
-            </p>
+            <button class="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
+              LEARN MORE
+            </button>
           </div>
         </div>
-        <button
-          class="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors"
-        >
-          LEARN MORE
-        </button>
       </div>
 
       <!-- Project Card 2 -->
