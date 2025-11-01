@@ -147,7 +147,7 @@
 <template>
   <section
     id="banner"
-    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    class="relative pt-8 md:pt-0 min-h-screen flex items-center justify-center overflow-hidden"
   >
     <!-- Main Content Container -->
     <div class="relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
