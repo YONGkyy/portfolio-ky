@@ -33,13 +33,15 @@
     "Creative Developer",
   ];
 
+
+  
   // Use composables for typing animations
   const greeting = useTypingAnimation("Hey there, I'm", 80);
   const nameTyping = useTypingAnimation(name, 100);
   const roleCycling = useRoleCycling(roles, {
     typeSpeed: 100,
     deleteSpeed: 50,
-    pauseTime: 2000,
+    pauseTime: 1000,
   });
 
   // Sequential animation on mount
@@ -341,7 +343,7 @@
             <!-- Glowing Background -->
             <div
               class="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-full blur-3xl opacity-40 animate-pulse"
-            ></div>
+            />
 
             <!-- Rotating Ring -->
             <Motion
@@ -382,12 +384,10 @@
                 <div
                   class="w-full h-full bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 flex items-center justify-center"
                 >
-                  <!-- <div class="text-9xl text-white/90 font-bold">KY</div> -->
                   <img
                     src="/images/prof.png"
                     alt="Profile Image"
-                    class="w-full object-cover"
-                  />
+                    class="w-full object-cover"/>
                 </div>
                 <!-- Hover Overlay -->
                 <div
