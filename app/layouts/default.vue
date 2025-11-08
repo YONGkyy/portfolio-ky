@@ -9,7 +9,7 @@ import appHeader from './header.vue';
     <appHeader />
     
     <!-- Main content WITH overflow wrapper -->
-    <div class="overflow-x-hidden">
+    <div class="overflow-x-hidden ">
       <main class="min-h-screen">
         <slot />
       </main>

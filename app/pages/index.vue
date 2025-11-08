@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { color } from "motion-v";
   import Aboutme from "~/components/sections/aboutme.vue";
   import Banner from "~/components/sections/banner.vue";
   import Contact from "~/components/sections/contact.vue";
