@@ -20,6 +20,7 @@
   }
 
   const props = defineProps<{
+    profiles?: string;
     name?: string;
     roles?: string[];
     description?: string;
@@ -33,8 +34,6 @@
     "Creative Developer",
   ];
 
-
-  
   // Use composables for typing animations
   const greeting = useTypingAnimation("Hey there, I'm", 80);
   const nameTyping = useTypingAnimation(name, 100);
@@ -384,10 +383,11 @@
                 <div
                   class="w-full h-full bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 flex items-center justify-center"
                 >
-                  <img
-                    src="/images/prof.png"
+                  <nuxtImg
+                    :src="props.profiles"
                     alt="Profile Image"
-                    class="w-full object-cover"/>
+                    class="w-full object-cover"
+                  />
                 </div>
                 <!-- Hover Overlay -->
                 <div

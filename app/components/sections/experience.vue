@@ -4,24 +4,29 @@
 
 <template>
   <section class="mb-20 w-full max-w-6xl px-4 sm:px-6">
-    <div
+       <Motion
       id="experience"
-      data-aos="fade-down"
+      :initial="{ opacity: 0, scale: 0.8 }"
+      :animate="{ opacity: 1, scale: 1 }"
+      :transition="{ duration: 0.8, ease: 'easeOut' }"
       class="flex items-center gap-4 mb-12 justify-center lg:justify-start"
     >
-      <!-- Section Label -->
       <div
+        data-aos="fade-left"
         class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
       ></div>
       <span
-        class="text-purple-400 uppercase tracking-wider text-sm  md:text-lg font-semibold"
+        data-aos="fade-down"
+        class="text-purple-400 uppercase tracking-wider text-sm md:text-lg font-semibold"
       >
-          Work Experience
+         Work Experience
       </span>
       <div
+        data-aos="fade-right"
         class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
       ></div>
-    </div>
+    </Motion>
+
 
     <!-- Main Experience Card -->
     <div class="mb-12">

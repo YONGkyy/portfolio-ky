@@ -1,6 +1,25 @@
 <script setup lang="ts">
-  import Banner from "~/components/banner.vue";
+  import Aboutme from "~/components/sections/aboutme.vue";
+  import Banner from "~/components/sections/banner.vue";
+  import Contact from "~/components/sections/contact.vue";
+  import Experience from "~/components/sections/experience.vue";
+  import Skill from "~/components/sections/skill.vue";
 
+  const skills = [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Vue.js",
+    "Nuxt.js",
+    "Tailwind CSS",
+    "TypeScript",
+    "Git",
+    "PHP",
+    "Laravel",
+    "MySQL",
+    "SQLServer",
+    "Figma",
+  ];
 </script>
 
 <template>
@@ -31,74 +50,23 @@
     <div class="main dark:block hidden"></div>
 
     <!-- Hero Section -->
-    <section
-      class="relative w-full mx-auto m flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
-    >
+    <section class="relative flex flex-col justify-center items-center z-10">
       <!-- Profile Card -->
-      <Banner />
+      <Banner profiles="/images/prof.png" />
 
-      <!-- Professional Description -->
-      <div
-        id="explore"
-        class="text-center min-h-screen mb-16 px-4 
-         flex flex-col  lg:flex-row-reverse justify-between items-center gap-12"
-      >
-        <div
-          data-aos="fade-right"
-          class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-3xl"
-        >
-          <h2
-            data-aos="fade-up"
-            class="text-lightText dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold "
-          >
-            I'm a Web Developer
-          </h2>
-          <p
-            data-aos="fade-up"
-            class="text-lightTextSecondary dark:text-gray-300 mb-6 text-base sm:text-lg"
-          >
-            Currently, I'm working as a Web Developer at
-            <a
-              href=""
-              class="text-lightAccent dark:text-blue-400 hover:text-lightAccentHover dark:hover:text-blue-300 transition-colors"
-              >Norton University</a
-            >.
-          </p>
-          <p
-            data-aos="fade-up"
-            class="text-lightTextSecondary dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg sm:text-base"
-          >
-            I'm a self-taught UI/UX designer with over 3 years of experience,
-            crafting meaningful and delightful digital products. My focus is on
-            creating seamless user experiences that balance both user needs and
-            business objectives.
-          </p>
-        </div>
-
-        <div
-          data-aos="fade-left"
-          class="flex-1 text-center lg:text-left order-1 lg:order-2 max-w-2xl"
-        >
-          <!-- Animated Glow Background -->
-          <div
-            class="absolute w-full h-full rounded-full bg-lightAccent/20 dark:bg-indigo-900 blur-3xl opacity-60 animate-glow"
-          ></div>
-
-          <!-- Profile Image -->
-          <img
-            src="/images/sadness.png"
-            alt="Keo Yinyong professional photo"
-            class="w-64 h-64 sm:w-64 sm:h-64 lg:w-[500px] lg:h-[500px] object-cover justify-center rounded-2xl ml-8 shadow-lg dark:shadow-2xl relative z-10"
-          />
-        </div>
-      </div>
+      <!-- About Me Section -->
+      <Aboutme
+        profile-image="/images/sadness.png"
+        :skills="skills"
+        :stats="{ experience: 3, projects: 50 }"
+      />
 
       <!-- Rest of sections -->
-      <skill />
-      <experience />
+      <Skill />
+      <Experience />
       <!-- <project /> -->
       <!-- <testimonials /> -->
-      <contact />
+      <Contact />
     </section>
   </div>
 </template>

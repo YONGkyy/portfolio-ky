@@ -37,7 +37,7 @@
     isScrolled.value = window.scrollY > 50;
     
     // Update active section based on scroll position
-    const sections = ['banner', 'skills', 'experience', 'projects', 'contact'];
+    const sections = ['banner', 'aboutme', 'skills', 'experience', 'projects', 'contact'];
     const scrollPosition = window.scrollY + 100;
 
     for (const section of sections) {
@@ -116,6 +116,17 @@
         >
           Home
         </button>
+        <button
+          @click="smoothScrollTo('aboutme')"
+           :class="[
+            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
+            activeSection === 'aboutme'
+              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
+              : isDarkMode
+                ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
+                : 'text-lightText hover:text-lightAccent hover:bg-lightAccent/10'
+          ]"
+        >About</button>
         <button
           @click="smoothScrollTo('skills')"
           :class="[
