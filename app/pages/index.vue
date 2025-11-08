@@ -24,7 +24,7 @@
 
 <template>
   <div
-    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900"
+    class="relative min-h-screen px-2 sm:px-4 md:px-6  items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 "
   >
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -48,9 +48,7 @@
 
     <!-- Background Animation (only in dark mode) -->
     <div class="main dark:block hidden"></div>
-
-    <!-- Hero Section -->
-    <section class="relative flex flex-col justify-center items-center z-10">
+    <div>
       <!-- Profile Card -->
       <Banner profiles="/images/prof.png" />
 
@@ -60,7 +58,12 @@
         :skills="skills"
         :stats="{ experience: 3, projects: 50 }"
       />
-
+    </div>
+    <!-- Hero Section -->
+    <section
+    
+      class="relative w-full mx-auto m flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10"
+    >
       <!-- Rest of sections -->
       <Skill />
       <Experience />
