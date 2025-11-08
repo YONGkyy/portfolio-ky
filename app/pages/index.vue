@@ -1,33 +1,6 @@
 <script setup lang="ts">
   import Banner from "~/components/banner.vue";
 
-  // const techs = [
-  //   { name: "HTML", class: "html", icon: "fa-html5", color: "#e44d26" },
-  //   { name: "CSS", class: "css", icon: "fa-css3", color: "#264de4" },
-  //   { name: "JavaScript", class: "js", icon: "fa-js", color: "#f0db4f" },
-  //   { name: "Vue", class: "vue", icon: "fa-vuejs", color: "#42b883" },
-  //   {
-  //     name: "Nuxt",
-  //     class: "nuxt",
-  //     image: "/images/nuxt.svg",
-  //     color: "#00c58e",
-  //   },
-  //   { name: "PHP", class: "php", icon: "fa-php", color: "#777bb3" },
-  //   { name: "Laravel", class: "laravel", icon: "fa-laravel", color: "#ff2d20" },
-  //   { name: "MySQL", class: "mysql", text: "MySQL", color: "#00758f" },
-  //   {
-  //     name: "Github",
-  //     class: "github ",
-  //     icon: "fa-github",
-  //     color: "#33333",
-  //   },
-  //   {
-  //     name: "Figma",
-  //     class: "figma ",
-  //     icon: "fa-figma",
-  //     color: "#f24e1e",
-  //   },
-  // ];
 </script>
 
 <template>
