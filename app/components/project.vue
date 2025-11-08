@@ -1,12 +1,23 @@
 <template>
   <section class="mb-20 w-full max-w-6xl px-2 sm:px-4 md:px-6">
-    <h3
+    <div
       id="projects"
       data-aos="fade-down"
-      class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex text-start relative z-10"
+      class="flex items-center gap-4 mb-12 justify-center lg:justify-start"
     >
-      Featured Projects
-    </h3>
+      <!-- Section Label -->
+      <div
+        class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
+      ></div>
+      <span
+        class="text-purple-400 uppercase tracking-wider text-sm  md:text-lg font-semibold"
+      >
+        Featured Projects
+      </span>
+      <div
+        class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
+      ></div>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 md:gap-6">
       <!-- Project Card 1: Norton University Portal -->
@@ -16,14 +27,16 @@
       >
         <!-- Project Image -->
         <div class="relative mb-4 rounded-lg overflow-hidden">
-          <img 
-            src="/images/pf1.jpg" 
+          <img
+            src="/images/pf1.jpg"
             alt="Norton University Student Portal"
             class="w-full h-32 sm:h-40 object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"
+          ></div>
         </div>
-        
+
         <div class="flex items-start gap-3 sm:gap-4 mb-4">
           <div
             class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0"
@@ -33,14 +46,20 @@
               fill="currentColor"
               viewBox="0 0 24 24"
             >
-              <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
+              <path
+                d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"
+              />
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <h4 class="text-white font-semibold text-sm sm:text-base mb-2 break-words">
+            <h4
+              class="text-white font-semibold text-sm sm:text-base mb-2 break-words"
+            >
               Norton University Student Portal
             </h4>
-            <button class="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
+            <button
+              class="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors"
+            >
               LEARN MORE
             </button>
           </div>

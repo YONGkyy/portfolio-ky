@@ -1,12 +1,23 @@
 <template>
   <section class="mb-20 w-full max-w-6xl px-2 sm:px-4 md:px-6">
-    <h3
+    <div
       id="contact"
       data-aos="fade-down"
-      class="text-lightText dark:text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8 sm:mb-12 flex text-start relative z-10"
+     class="flex items-center gap-4 mb-12 justify-center lg:justify-start"
     >
-      Get In Touch
-    </h3>
+      <!-- Section Label -->
+      <div
+        class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
+      ></div>
+      <span
+        class="text-purple-400 uppercase tracking-wider text-sm  md:text-lg font-semibold"
+      >
+             Get In Touch
+      </span>
+      <div
+        class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
+      ></div>
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Contact Information -->

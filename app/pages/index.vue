@@ -67,15 +67,16 @@
       <!-- Professional Description -->
       <div
         id="explore"
-        class="text-center mb-16 px-4 sm:px-6 flex flex-col  lg:flex-row-reverse justify-between items-center gap-12"
+        class="text-center min-h-screen mb-16 px-4 
+         flex flex-col  lg:flex-row-reverse justify-between items-center gap-12"
       >
         <div
           data-aos="fade-right"
-          class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-2xl"
+          class="flex-1 text-center lg:text-left order-2 lg:order-2 max-w-3xl"
         >
           <h2
             data-aos="fade-up"
-            class="text-lightText dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6"
+            class="text-lightText dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold "
           >
             I'm a Web Developer
           </h2>
@@ -112,9 +113,9 @@
 
           <!-- Profile Image -->
           <img
-            src="/images/pf6.jpg"
+            src="/images/sadness.png"
             alt="Keo Yinyong professional photo"
-            class="w-64 h-64 sm:w-64 sm:h-64 lg:w-96 lg:h-96 object-cover justify-center rounded-2xl ml-8 shadow-lg dark:shadow-2xl relative z-10"
+            class="w-64 h-64 sm:w-64 sm:h-64 lg:w-[500px] lg:h-[500px] object-cover justify-center rounded-2xl ml-8 shadow-lg dark:shadow-2xl relative z-10"
           />
         </div>
       </div>
