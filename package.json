@@ -20,7 +20,9 @@
   },
   "devDependencies": {
     "@nuxt/image": "^2.0.0",
+    "@tailwindcss/vite": "^4.1.17",
     "nuxt": "^4.0.0",
+    "tailwindcss": "^4.1.17",
     "vite": "^7.0.4"
   }
 }
