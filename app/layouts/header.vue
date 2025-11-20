@@ -114,9 +114,9 @@
   >
     <div class="flex items-center justify-between px-4 md:px-16 py-2">
       <!-- Debug info - remove in production -->
-      <div class="text-xs text-white/70">
+      <!-- <div class="text-xs text-white/70">
         Mode: {{ $colorMode.preference }} | Dark: {{ isDarkMode }}
-      </div>
+      </div> -->
 
       <!-- Logo -->
       <div
