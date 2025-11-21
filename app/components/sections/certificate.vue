@@ -41,7 +41,7 @@
       title: "Certificate of Internship Completion",
       issuer: "Norton University",
       date: "2025",
-      credentialId: "UC-XXXXX",
+      credentialId: "1612/25",
       image: "/certificates/i1.jpg",
       pdfUrl: "/certificates/i3.pdf",
       icon: "fas fa-briefcase",
