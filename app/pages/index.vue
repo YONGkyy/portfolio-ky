@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import Aboutme from "~/components/sections/aboutme.vue";
   import Banner from "~/components/sections/banner.vue";
+import Certificate from "~/components/sections/certificate.vue";
   import Contact from "~/components/sections/contact.vue";
   import Experience from "~/components/sections/experience.vue";
   import Skill from "~/components/sections/skill.vue";
@@ -67,6 +68,7 @@
       >
         <Skill />
         <Experience />
+        <Certificate />
         <Contact />
       </section>
     </div>

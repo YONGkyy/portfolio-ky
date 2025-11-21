@@ -48,6 +48,7 @@
       "skills",
       "experience",
       "projects",
+      "certificates",
       "contact",
     ];
     const scrollPosition = window.scrollY + 100;
@@ -190,6 +191,21 @@
         >
           Experience
         </button>
+
+        <button
+          @click="smoothScrollTo('certificates')"
+          :class="[
+            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
+            activeSection === 'certificates'
+              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
+              : isDarkMode
+              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
+              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
+          ]"
+        >
+          Certificates
+        </button>
+
         <button
           @click="smoothScrollTo('projects')"
           :class="[
@@ -203,6 +219,7 @@
         >
           Projects
         </button>
+
         <button
           @click="smoothScrollTo('contact')"
           :class="[
