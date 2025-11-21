@@ -5,9 +5,8 @@
     issuer: string;
     date: string;
     credentialId?: string;
-    credentialUrl?: string;
     image: string;
-    pdfUrl?: string; // PDF file URL for download
+    pdfUrl?: string; // Optional property
     icon: string;
     orientation: "horizontal" | "vertical";
     color: {
@@ -21,12 +20,12 @@
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: "English Language Proficiency Certificate",
+      title: "Certificate of English Language Proficiency",
       issuer: "Norton University",
-      date: "2023",
+      date: "2024",
       credentialId: "0084/24 NU/CAHL",
       image: "/certificates/e1.jpg",
-      pdfUrl: "/certificates/e3.pdf", // PDF file path
+      pdfUrl: "/certificates/e3.pdf",
       icon: "fas fa-language",
       orientation: "vertical",
       color: {
@@ -55,7 +54,7 @@
     },
     {
       id: 3,
-      title: "Outstanding Certificate",
+      title: "Certificate of Academic Award",
       issuer: "Norton University",
       date: "2024",
       credentialId: "0163/24 NU",
@@ -72,15 +71,24 @@
     },
   ];
 
-  // Function to open PDF in new tab for viewing
-  const viewCertificate = (pdfUrl: string, title: string) => {
-    window.open(pdfUrl, '_blank');
+  // Function to open PDF in new tab
+  // Added 'undefined' check to prevent errors
+  const viewCertificate = (pdfUrl: string | undefined) => {
+    if (pdfUrl) {
+      window.open(pdfUrl, '_blank');
+    } else {
+      console.warn('No PDF available for this certificate');
+      alert('PDF not available yet.');
+    }
   };
 
   // Function to download PDF directly
-  const downloadCertificate = (pdfUrl: string, title: string) => {
+  const downloadCertificate = (pdfUrl: string | undefined, title: string) => {
+    if (!pdfUrl) return; // Stop if no URL
+
     const link = document.createElement('a');
     link.href = pdfUrl;
+    // formatting the filename to be cleaner (e.g., certificate-of-award.pdf)
     link.download = `${title.replace(/\s+/g, '-').toLowerCase()}.pdf`;
     document.body.appendChild(link);
     link.click();
@@ -235,18 +243,6 @@
               title="Download PDF"
             >
               <i class="fas fa-download"></i>
-            </button>
-
-            <!-- Share Button -->
-            <button
-              :class="`px-4 py-2.5 rounded-lg border ${
-                cert.color.badge.replace('from-', 'border-').split(' ')[0]
-              }/40 ${
-                cert.color.text
-              } hover:bg-white/5 transition-all duration-300 text-sm`"
-              title="Share"
-            >
-              <i class="fas fa-share-alt"></i>
             </button>
           </div>
 
