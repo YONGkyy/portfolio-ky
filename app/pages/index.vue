@@ -60,7 +60,7 @@ import Certificate from "~/components/sections/certificate.vue";
       <Aboutme
         profile-image="/images/sadness.png"
         :skills="skills"
-        :stats="{ experience: 3, projects: 50 }"
+        :stats="{ experience: 2 }"
       />
 
       <section

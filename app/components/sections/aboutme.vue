@@ -127,9 +127,9 @@
                 <div
                   class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
                 >
-                  {{ stats.experience }}+
+                  {{ stats.projects }}+
                 </div>
-                <div class="text-xs text-gray-400 mt-1">Years Exp</div>
+                <div class="text-xs text-gray-400 mt-1"></div>
               </div>
             </div>
           </div>
@@ -142,9 +142,9 @@
                 <div
                   class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
                 >
-                  {{ stats.projects }}+
+                  {{ stats.experience }}+
                 </div>
-                <div class="text-xs text-gray-400 mt-1">Projects</div>
+                <div class="text-xs text-gray-400 mt-1">Years Exp</div>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@
               >
               with over
               <span class="text-purple-400 font-semibold">
-                3+ years of experience</span
+                2+ years of experience</span
               >
               crafting meaningful and delightful digital products.
             </p>
