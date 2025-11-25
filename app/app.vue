@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const colorMode = useColorMode();
+useColorMode()  // no need to bind class manually
 </script>
 
 <template>
-  <div :class="{ dark: colorMode.value === 'dark' }">
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
