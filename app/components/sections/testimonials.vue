@@ -1,3 +1,9 @@
+<script setup lang="ts">
+  import { computed } from 'vue';
+  const colorMode = useColorMode();
+  const isDarkMode = computed(() => colorMode.value === "dark");
+</script>
+
 <template>
   <section class="mb-20 w-full max-w-6xl px-2 sm:px-4 md:px-6">
     <div
@@ -8,14 +14,17 @@
       <!-- Section Label -->
       <div
         class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
+        :class="{ 'opacity-50': !isDarkMode }"
       ></div>
       <span
         class="text-purple-400 uppercase tracking-wider text-sm md:text-lg font-semibold"
+        :class="{ 'text-blue-600': !isDarkMode }"
       >
         Testimonials & Achievements
       </span>
       <div
         class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
+        :class="{ 'opacity-50': !isDarkMode }"
       ></div>
     </div>
 

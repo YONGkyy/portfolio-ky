@@ -1,149 +1,153 @@
 <script setup lang="ts">
-  import { Motion } from "motion-v";
-  import { onMounted, onUnmounted } from "vue";
-  import {
-    useTypingAnimation,
-    useRoleCycling,
-  } from "~/composables/useTypingAnimation";
-  const colorMode = useColorMode();
+import { Motion } from "motion-v";
+import { onMounted, onUnmounted, computed } from "vue";
+import {
+  useTypingAnimation,
+  useRoleCycling,
+} from "~/composables/useTypingAnimation";
 
-  interface SocialLink {
-    name: string;
-    icon: string;
-    url: string;
-  }
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
 
-  interface TechItem {
-    name: string;
-    icon: string;
-    color: string;
-    position: Record<string, string>;
-  }
+// Theme-aware classes helper
+const themeClass = (lightClass: string, darkClass: string) => 
+  computed(() => isDark.value ? darkClass : lightClass);
 
-  const props = defineProps<{
-    profiles?: string;
-    name?: string;
-    roles?: string[];
-    description?: string;
-    socialLinks?: SocialLink[];
-  }>();
+interface SocialLink {
+  name: string;
+  icon: string;
+  url: string;
+}
 
-  const name = props.name || "Keo Yinyong";
-  const roles = props.roles || [
-    "Web Developer",
-    "UI/UX Designer",
-    "Creative Developer",
-  ];
+interface TechItem {
+  name: string;
+  icon: string;
+  color: string;
+  position: Record<string, string>;
+}
 
-  // Use composables for typing animations
-  const greeting = useTypingAnimation("Hey there, I'm", 80);
-  const nameTyping = useTypingAnimation(name, 100);
-  const roleCycling = useRoleCycling(roles, {
-    typeSpeed: 100,
-    deleteSpeed: 50,
-    pauseTime: 1000,
-  });
+const props = defineProps<{
+  profiles?: string;
+  name?: string;
+  roles?: string[];
+  description?: string;
+  socialLinks?: SocialLink[];
+}>();
 
-  // Sequential animation on mount
-  onMounted(async () => {
-    await greeting.type();
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    await nameTyping.type();
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    roleCycling.start();
-  });
+const name = props.name || "Keo Yinyong";
+const roles = props.roles || [
+  "Web Developer",
+  "UI/UX Designer",
+  "Creative Developer",
+];
 
-  onUnmounted(() => {
-    roleCycling.stop();
-  });
+const greeting = useTypingAnimation("Hey there, I'm", 80);
+const nameTyping = useTypingAnimation(name, 100);
+const roleCycling = useRoleCycling(roles, {
+  typeSpeed: 100,
+  deleteSpeed: 50,
+  pauseTime: 1000,
+});
 
-  const description =
-    props.description ||
-    "Passionate about creating beautiful, functional digital experiences that solve real problems. I blend design thinking with technical expertise to craft solutions that users love.";
+onMounted(async () => {
+  await greeting.type();
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  await nameTyping.type();
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  roleCycling.start();
+});
 
-  const socialLinks = props.socialLinks || [
-    {
-      name: "GitHub",
-      icon: "fab fa-github",
-      url: "https://github.com/YONGKyy",
-    },
-    {
-      name: "LinkedIn",
-      icon: "fab fa-linkedin-in",
-      url: "https://www.linkedin.com/in/keo-yinyong-396277330/",
-    },
-    {
-      name: "Facebook",
-      icon: "fab fa-facebook-f",
-      url: "https://www.facebook.com/yong.kawaii",
-    },
-    {
-      name: "Telegram",
-      icon: "fab fa-telegram-plane",
-      url: "https://t.me/yong_24",
-    },
-  ];
+onUnmounted(() => {
+  roleCycling.stop();
+});
 
-  const visibleTechStack: TechItem[] = [
-    {
-      name: "JavaScript",
-      icon: "fab fa-js-square",
-      color: "#F7DF1E",
-      position: { top: "-6%", left: "45%" },
-    },
-    {
-      name: "Vue.js",
-      icon: "fab fa-vuejs",
-      color: "#4FC08D",
-      position: { top: "-10%", right: "-10%" },
-    },
-    {
-      name: "Node.js",
-      icon: "fab fa-node-js",
-      color: "#339933",
-      position: { bottom: "10%", left: "-15%" },
-    },
-    {
-      name: "CSS3",
-      icon: "fab fa-css3-alt",
-      color: "#1572B6",
-      position: { top: "10%", right: "-20%" },
-    },
-    {
-      name: "HTML5",
-      icon: "fab fa-html5",
-      color: "#E34F26",
-      position: { bottom: "-10%", left: "-15%" },
-    },
-    {
-      name: "GitHub",
-      icon: "fab fa-github",
-      color: "#181717",
-      position: { bottom: "-10%", left: "30%" },
-    },
-    {
-      name: "TypeScript",
-      icon: "fab fa-js-square",
-      color: "#007ACC",
-      position: { top: "15%", left: "-30%" },
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "fab fa-css3-alt",
-      color: "#06B6D4",
-      position: { top: "57%", right: "-20%" },
-    },
-    {
-      name: "Nuxt.js",
-      icon: "fab fa-vuejs",
-      color: "#00DC82",
-      position: { bottom: "-5%", right: "-8%" },
-    },
-  ];
+const description =
+  props.description ||
+  "Passionate about creating beautiful, functional digital experiences that solve real problems. I blend design thinking with technical expertise to craft solutions that users love.";
 
-  const openLink = (url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+const socialLinks = props.socialLinks || [
+  {
+    name: "GitHub",
+    icon: "fab fa-github",
+    url: "https://github.com/YONGKyy",
+  },
+  {
+    name: "LinkedIn",
+    icon: "fab fa-linkedin-in",
+    url: "https://www.linkedin.com/in/keo-yinyong-396277330/",
+  },
+  {
+    name: "Facebook",
+    icon: "fab fa-facebook-f",
+    url: "https://www.facebook.com/yong.kawaii",
+  },
+  {
+    name: "Telegram",
+    icon: "fab fa-telegram-plane",
+    url: "https://t.me/yong_24",
+  },
+];
+
+const visibleTechStack: TechItem[] = [
+  {
+    name: "JavaScript",
+    icon: "fab fa-js-square",
+    color: "#F7DF1E",
+    position: { top: "-6%", left: "45%" },
+  },
+  {
+    name: "Vue.js",
+    icon: "fab fa-vuejs",
+    color: "#4FC08D",
+    position: { top: "-10%", right: "-10%" },
+  },
+  {
+    name: "Node.js",
+    icon: "fab fa-node-js",
+    color: "#339933",
+    position: { bottom: "10%", left: "-15%" },
+  },
+  {
+    name: "CSS3",
+    icon: "fab fa-css3-alt",
+    color: "#1572B6",
+    position: { top: "10%", right: "-20%" },
+  },
+  {
+    name: "HTML5",
+    icon: "fab fa-html5",
+    color: "#E34F26",
+    position: { bottom: "-10%", left: "-15%" },
+  },
+  {
+    name: "GitHub",
+    icon: "fab fa-github",
+    color: isDark.value ? "#FFFFFF" : "#181717",
+    position: { bottom: "-10%", left: "30%" },
+  },
+  {
+    name: "TypeScript",
+    icon: "fab fa-js-square",
+    color: "#007ACC",
+    position: { top: "15%", left: "-30%" },
+  },
+  {
+    name: "Tailwind",
+    icon: "fab fa-css3-alt",
+    color: "#06B6D4",
+    position: { top: "57%", right: "-20%" },
+  },
+  {
+    name: "Nuxt.js",
+    icon: "fab fa-vuejs",
+    color: "#00DC82",
+    position: { bottom: "-5%", right: "-8%" },
+  },
+];
+
+const openLink = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
 </script>
 
 <template>
@@ -151,47 +155,55 @@
     id="banner"
     class="relative pt-8 md:pt-0 min-h-screen flex items-center justify-center overflow-hidden"
   >
-    <!-- Main Content Container -->
     <div class="relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
- 
-        <!-- Text Content - Left Side -->
+        <!-- Text Content -->
         <Motion
           :initial="{ opacity: 0, x: -60 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{ duration: 0.8, ease: 'easeOut' }"
           class="order-2 lg:order-1 text-center lg:text-left space-y-8"
         >
-          <!-- Greeting Badge -->
+          <!-- Availability Badge -->
           <Motion
             :initial="{ opacity: 0, y: 20 }"
             :animate="{ opacity: 1, y: 0 }"
             :transition="{ delay: 0.2 }"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-purple-500/20 mx-auto lg:mx-0"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border mx-auto lg:mx-0 transition-colors"
+            :class="[
+              isDark
+                ? 'bg-white/5 border-purple-500/20'
+                : 'bg-blue-50/80 border-blue-200/60'
+            ]"
           >
             <span class="relative flex h-3 w-3">
               <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"
+                class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                :class="isDark ? 'bg-purple-400' : 'bg-blue-500'"
               ></span>
               <span
-                class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"
+                class="relative inline-flex rounded-full h-3 w-3"
+                :class="isDark ? 'bg-purple-500' : 'bg-blue-600'"
               ></span>
             </span>
-            <span class="text-purple-300 text-sm font-medium"
-              >Available for work</span
+            <span 
+              class="text-sm font-medium"
+              :class="isDark ? 'text-purple-300' : 'text-blue-700'"
             >
+              Available for work
+            </span>
           </Motion>
 
-          <!-- Main Headline -->
+          <!-- Greeting -->
           <div class="space-y-4">
-            <!-- Greeting -->
             <Motion
               :initial="{ opacity: 0 }"
               :animate="{ opacity: 1 }"
               :transition="{ delay: 0.2 }"
             >
               <h2
-                class="text-xl sm:text-2xl text-purple-300 font-light tracking-wide min-h-[2rem]"
+                class="text-xl sm:text-2xl font-light tracking-wide min-h-8"
+                :class="isDark ? 'text-purple-300' : 'text-blue-600'"
               >
                 {{ greeting.displayText }}
                 <span v-if="!greeting.isComplete" class="animate-blink">|</span>
@@ -205,20 +217,21 @@
               :transition="{ delay: 0.1 }"
             >
               <h1
-                class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight min-h-[4rem] sm:min-h-[5rem] lg:min-h-[6rem]"
+                class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight min-h-16 sm:min-h-20 lg:min-h-24"
               >
                 <span
-                  class="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent"
+                  class="bg-gradient-to-r bg-clip-text text-transparent"
+                  :class="isDark 
+                    ? 'from-white via-purple-200 to-white' 
+                    : 'from-slate-900 via-blue-600 to-slate-900'"
                 >
                   {{ nameTyping.displayText }}
-                  <span v-if="!nameTyping.isComplete" class="animate-blink"
-                    >|</span
-                  >
+                  <span v-if="!nameTyping.isComplete" class="animate-blink">|</span>
                 </span>
               </h1>
             </Motion>
 
-            <!-- Role (only shows after name completes) -->
+            <!-- Role -->
             <Motion
               v-if="nameTyping.isComplete"
               :initial="{ opacity: 0, y: 20 }"
@@ -226,18 +239,16 @@
               :transition="{ duration: 0.5 }"
             >
               <div
-                class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300"
+                class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-2xl sm:text-3xl lg:text-4xl font-semibold"
+                :class="isDark ? 'text-gray-300' : 'text-gray-700'"
               >
                 <span>I'm a</span>
                 <span class="relative inline-flex items-center">
                   <span
-                    class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent"
+                    class="bg-gradient-to-r bg-clip-text text-transparent from-purple-400 via-pink-400 to-indigo-400"
                   >
-                    <span
-                      class="inline-block min-w-[200px] sm:min-w-[280px] text-left"
-                    >
-                      {{ roleCycling.currentRole
-                      }}<span class="animate-blink ml-1">|</span>
+                    <span class="inline-block min-w-[200px] sm:min-w-[280px] text-left">
+                      {{ roleCycling.currentRole }}<span class="animate-blink ml-1">|</span>
                     </span>
                   </span>
                 </span>
@@ -252,7 +263,10 @@
             :transition="{ delay: 0.6 }"
             class="max-w-2xl mx-auto lg:mx-0"
           >
-            <p class="text-lg sm:text-xl text-gray-400 leading-relaxed">
+            <p 
+              class="text-lg sm:text-xl leading-relaxed"
+              :class="isDark ? 'text-gray-400' : 'text-gray-600'"
+            >
               {{ description }}
             </p>
           </Motion>
@@ -268,13 +282,11 @@
               <Motion
                 :whileHover="{ scale: 1.05 }"
                 :whileTap="{ scale: 0.95 }"
-                class="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-semibold text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-shadow cursor-pointer"
+                class="group relative px-8 py-4 rounded-full font-semibold shadow-lg transition-all cursor-pointer bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-xl hover:shadow-purple-500/50"
               >
                 <span class="relative z-10 flex items-center gap-2">
                   Explore
-                  <i
-                    class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"
-                  ></i>
+                  <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </span>
               </Motion>
             </a>
@@ -283,7 +295,10 @@
               <Motion
                 :whileHover="{ scale: 1.05 }"
                 :whileTap="{ scale: 0.95 }"
-                class="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full font-semibold text-white hover:bg-white/10 transition-colors cursor-pointer inline-block"
+                class="px-8 py-4 rounded-full font-semibold transition-all cursor-pointer inline-block"
+                :class="isDark
+                  ? 'bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10'
+                  : 'bg-blue-500/10 border border-blue-300/50 text-blue-700 hover:bg-blue-500/20'"
               >
                 Download CV
               </Motion>
@@ -297,7 +312,12 @@
             :transition="{ delay: 0.8 }"
             class="flex items-center justify-center lg:justify-start gap-4 pt-2"
           >
-            <span class="text-gray-500 text-sm font-medium">Connect:</span>
+            <span 
+              class="text-sm font-medium"
+              :class="isDark ? 'text-gray-500' : 'text-gray-600'"
+            >
+              Connect:
+            </span>
             <div class="flex gap-3">
               <Motion
                 v-for="(social, index) in socialLinks"
@@ -307,7 +327,10 @@
                 :transition="{ delay: 0.9 + index * 0.1 }"
                 :whileHover="{ scale: 1.1, y: -2 }"
                 :whileTap="{ scale: 0.95 }"
-                class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/50 hover:bg-white/10 transition-all cursor-pointer"
+                class="w-12 h-12 rounded-full backdrop-blur-sm border flex items-center justify-center transition-all cursor-pointer"
+                :class="isDark
+                  ? 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-purple-500/50 hover:bg-white/10'
+                  : 'bg-blue-50/80 border-blue-200/60 text-gray-600 hover:text-blue-700 hover:border-blue-400/60 hover:bg-blue-100/80'"
                 @click="openLink(social.url)"
               >
                 <i :class="social.icon" class="text-lg"></i>
@@ -323,17 +346,20 @@
             class="grid grid-cols-3 gap-6 pt-8 max-w-lg mx-auto lg:mx-0"
           >
             <div class="text-center lg:text-left">
-              <div
-                class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-              >
+              <div class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 2+
               </div>
-              <div class="text-sm text-gray-500 mt-1">Years Exp</div>
+              <div 
+                class="text-sm mt-1"
+                :class="isDark ? 'text-gray-500' : 'text-gray-600'"
+              >
+                Years Exp
+              </div>
             </div>
           </Motion>
         </Motion>
 
-        <!-- Profile Image - Right Side -->
+        <!-- Profile Image -->
         <Motion
           :initial="{ opacity: 0, scale: 0.8 }"
           :animate="{ opacity: 1, scale: 1 }"
@@ -346,15 +372,13 @@
               class="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-full blur-3xl opacity-40 animate-pulse"
             />
 
-            <!-- Rotating Ring -->
+            <!-- Rotating Rings -->
             <Motion
               :animate="{ rotate: 360 }"
               :transition="{ duration: 20, repeat: Infinity, ease: 'linear' }"
               class="absolute inset-0"
             >
-              <div
-                class="absolute inset-0 rounded-full border-4 border-dashed border-purple-500/30"
-              ></div>
+              <div class="absolute inset-0 rounded-full border-4 border-dashed border-purple-500/30"></div>
             </Motion>
 
             <Motion
@@ -362,18 +386,21 @@
               :transition="{ duration: 25, repeat: Infinity, ease: 'linear' }"
               class="absolute inset-8"
             >
-              <div
-                class="absolute inset-0 rounded-full border-2 border-dotted border-pink-500/30"
-              ></div>
+              <div class="absolute inset-0 rounded-full border-2 border-dotted border-pink-500/30"></div>
             </Motion>
 
-            <!-- Main Profile Card -->
+            <!-- Profile Card -->
             <div
-              class="relative aspect-square rounded-3xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl border border-white/10 p-8 shadow-2xl"
+              class="relative aspect-square rounded-3xl backdrop-blur-xl border shadow-2xl p-8"
+              :class="isDark 
+                ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-white/10' 
+                : 'bg-gradient-to-br from-purple-100/50 to-pink-100/50 border-blue-200/40'"
             >
-              <!-- Inner Glow -->
               <div
-                class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5"
+                class="absolute inset-0 rounded-3xl"
+                :class="isDark 
+                  ? 'bg-gradient-to-br from-purple-500/5 to-pink-500/5' 
+                  : 'bg-gradient-to-br from-blue-50/30 to-purple-50/30'"
               ></div>
 
               <!-- Profile Image -->
@@ -382,22 +409,17 @@
                 :transition="{ type: 'spring', stiffness: 300 }"
                 class="relative w-full h-full rounded-2xl overflow-hidden shadow-xl"
               >
-                <div
-                  class="w-full h-full bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 flex items-center justify-center"
-                >
+                <div class="w-full h-full bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 flex items-center justify-center">
                   <nuxtImg
                     :src="props.profiles"
                     alt="Profile Image"
-                    class="w-full object-cover"
+                    class="w-full h-full object-cover"
                   />
                 </div>
-                <!-- Hover Overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity"
-                ></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
               </Motion>
 
-              <!-- Floating Tech Badges -->
+              <!-- Tech Badges -->
               <Motion
                 v-for="(tech, index) in visibleTechStack"
                 :key="tech.name"
@@ -417,28 +439,26 @@
                   },
                 }"
                 :style="tech.position"
-                class="absolute hidden lg:block box-content px-3 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg"
+                class="absolute hidden lg:block box-content px-3 py-2 backdrop-blur-md border rounded-full shadow-lg"
+                :class="isDark 
+                  ? 'bg-white/10 border-white/20' 
+                  : 'bg-white/80 border-blue-200/60'"
               >
-                <div class="flex items-center gap-2 w-full h-full">
-                  <i
-                    :class="tech.icon"
-                    :style="{ color: tech.color }"
-                    class="text-lg"
-                  ></i>
-                  <span class="text-xs font-medium text-white">{{
-                    tech.name
-                  }}</span>
+                <div class="flex items-center gap-2">
+                  <i :class="tech.icon" :style="{ color: tech.color }" class="text-lg"></i>
+                  <span 
+                    class="text-xs font-medium"
+                    :class="isDark ? 'text-white' : 'text-gray-800'"
+                  >
+                    {{ tech.name }}
+                  </span>
                 </div>
               </Motion>
             </div>
 
             <!-- Corner Decorations -->
-            <div
-              class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50"
-            ></div>
-            <div
-              class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-50"
-            ></div>
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50"></div>
+            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-50"></div>
           </div>
         </Motion>
       </div>
@@ -452,7 +472,8 @@
         opacity: { delay: 2 },
         y: { duration: 2, repeat: Infinity },
       }"
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500"
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      :class="isDark ? 'text-gray-500' : 'text-gray-600'"
     >
       <span class="text-xs uppercase tracking-wider">Scroll</span>
       <i class="fas fa-chevron-down text-sm"></i>
@@ -461,24 +482,12 @@
 </template>
 
 <style scoped>
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
-  .delay-700 {
-    animation-delay: 700ms;
-  }
-
-  .delay-1000 {
-    animation-delay: 1000ms;
-  }
-
-  /* Ensure Font Awesome loads */
-  /* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"); */
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
 </style>

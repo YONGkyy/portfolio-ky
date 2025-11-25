@@ -13,34 +13,28 @@
       >
         <div
           data-aos="fade-left"
-          class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
+          :class="[
+            'h-px w-12 bg-gradient-to-r from-transparent',
+            isDark ? 'to-purple-500' : 'to-blue-600 opacity-70'
+          ]"
         ></div>
         <span
           data-aos="fade-down"
-          class="text-purple-400 uppercase tracking-wider text-sm md:text-lg font-semibold"
+          :class="[
+            'uppercase tracking-wider text-sm md:text-lg font-semibold',
+            isDark ? 'text-purple-400' : 'text-blue-600'
+          ]"
         >
           About Me
         </span>
         <div
           data-aos="fade-right"
-          class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
+          :class="[
+            'h-px flex-1 bg-gradient-to-r to-transparent max-w-xs',
+            isDark ? 'from-purple-500' : 'from-blue-600 opacity-70'
+          ]"
         ></div>
       </Motion>
-      <!-- <div
-     
-      >
-        <div
-          class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
-        ></div>
-        <span
-          class="text-purple-400 uppercase tracking-wider text-sm font-semibold"
-        >
-          About Me
-        </span>
-        <div
-          class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
-        ></div>
-      </div> -->
 
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <!-- Image Section - FIRST COLUMN -->
@@ -49,12 +43,22 @@
           <div class="absolute inset-0 -z-10">
             <!-- Gradient Glow -->
             <div
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-indigo-500/30 rounded-3xl blur-3xl animate-pulse"
+              :class="[
+                'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-3xl blur-3xl animate-pulse',
+                isDark
+                  ? 'bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-indigo-500/30'
+                  : 'bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-indigo-400/20'
+              ]"
             ></div>
 
             <!-- Grid Pattern -->
             <div
-              class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl"
+              :class="[
+                'absolute inset-0 rounded-3xl',
+                isDark
+                  ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10'
+                  : 'bg-gradient-to-br from-blue-100/30 to-purple-100/30'
+              ]"
             ></div>
           </div>
 
@@ -62,12 +66,22 @@
           <div data-aos="fade-right" class="relative group">
             <!-- Decorative Frame -->
             <div
-              class="absolute -inset-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"
+              :class="[
+                'absolute -inset-4 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500',
+                isDark
+                  ? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20'
+                  : 'bg-gradient-to-br from-blue-400/20 to-purple-400/20'
+              ]"
             ></div>
 
             <!-- Main Image Card -->
             <div
-              class="relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+              :class="[
+                'relative backdrop-blur-sm border rounded-3xl overflow-hidden shadow-2xl',
+                isDark
+                  ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-white/10'
+                  : 'bg-gradient-to-br from-blue-100/60 to-purple-100/60 border-blue-300/40'
+              ]"
             >
               <!-- Image -->
               <NuxtImg
@@ -89,7 +103,12 @@
 
             <!-- Floating Badge -->
             <div
-              class="absolute -bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl"
+              :class="[
+                'absolute -bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 backdrop-blur-xl border rounded-full shadow-xl',
+                isDark
+                  ? 'bg-white/10 border-white/20'
+                  : 'bg-white/90 border-blue-300/40'
+              ]"
             >
               <div class="flex items-center gap-3">
                 <div class="relative">
@@ -100,18 +119,29 @@
                     class="relative block w-3 h-3 bg-green-500 rounded-full"
                   ></span>
                 </div>
-                <span class="text-white text-sm font-medium"
-                  >Available for Projects</span
+                <span
+                  :class="[
+                    'text-sm font-medium',
+                    isDark ? 'text-white' : 'text-slate-800'
+                  ]"
                 >
+                  Available for Projects
+                </span>
               </div>
             </div>
 
             <!-- Corner Decorations -->
             <div
-              class="absolute -top-6 -right-6 w-24 h-24 bg-purple-500/30 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-500"
+              :class="[
+                'absolute -top-6 -right-6 w-24 h-24 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-500',
+                isDark ? 'bg-purple-500/30' : 'bg-blue-400/30'
+              ]"
             ></div>
             <div
-              class="absolute -bottom-6 -left-6 w-32 h-32 bg-pink-500/30 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-500"
+              :class="[
+                'absolute -bottom-6 -left-6 w-32 h-32 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-500',
+                isDark ? 'bg-pink-500/30' : 'bg-purple-400/30'
+              ]"
             ></div>
           </div>
 
@@ -121,7 +151,12 @@
             class="absolute -left-8 top-1/4 hidden xl:block"
           >
             <div
-              class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-xl animate-float"
+              :class="[
+                'backdrop-blur-xl border rounded-2xl p-4 shadow-xl animate-float',
+                isDark
+                  ? 'bg-white/10 border-white/20'
+                  : 'bg-white/90 border-blue-300/40'
+              ]"
             >
               <div class="text-center">
                 <div
@@ -129,14 +164,26 @@
                 >
                   {{ stats.projects }}+
                 </div>
-                <div class="text-xs text-gray-400 mt-1"></div>
+                <div
+                  :class="[
+                    'text-xs mt-1',
+                    isDark ? 'text-gray-400' : 'text-gray-600'
+                  ]"
+                >
+                  Projects
+                </div>
               </div>
             </div>
           </div>
 
           <div class="absolute -right-8 bottom-1/3 hidden xl:block">
             <div
-              class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-xl animate-float-delayed"
+              :class="[
+                'backdrop-blur-xl border rounded-2xl p-4 shadow-xl animate-float-delayed',
+                isDark
+                  ? 'bg-white/10 border-white/20'
+                  : 'bg-white/90 border-blue-300/40'
+              ]"
             >
               <div class="text-center">
                 <div
@@ -144,7 +191,14 @@
                 >
                   {{ stats.experience }}+
                 </div>
-                <div class="text-xs text-gray-400 mt-1">Years Exp</div>
+                <div
+                  :class="[
+                    'text-xs mt-1',
+                    isDark ? 'text-gray-400' : 'text-gray-600'
+                  ]"
+                >
+                  Years Exp
+                </div>
               </div>
             </div>
           </div>
@@ -156,7 +210,10 @@
           <div class="space-y-4">
             <h2
               data-aos="fade-down"
-              class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              :class="[
+                'text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight',
+                isDark ? 'text-white' : 'text-slate-900'
+              ]"
             >
               Crafting Digital
               <span
@@ -169,14 +226,22 @@
             <!-- Subtitle with Company -->
             <div
               data-aos="fade-up"
-              class="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xl text-gray-300"
+              :class="[
+                'flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xl',
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              ]"
             >
               <span>Web Developer at</span>
               <NuxtLink
                 to="https://www.norton-u.com/"
                 target="_blank"
                 external
-                class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors font-semibold group"
+                :class="[
+                  'inline-flex items-center gap-2 transition-colors font-semibold group',
+                  isDark
+                    ? 'text-purple-400 hover:text-purple-300'
+                    : 'text-blue-600 hover:text-blue-700'
+                ]"
               >
                 Norton University
                 <svg
@@ -198,36 +263,64 @@
 
           <!-- Description -->
           <div
-            class="space-y-6 text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            :class="[
+              'space-y-6 text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0',
+              isDark ? 'text-gray-300' : 'text-gray-700'
+            ]"
           >
             <p data-aos="fade-up">
               I'm a
-              <span class="text-white font-semibold"
-                >self-taught UI/UX designer</span
+              <span
+                :class="[
+                  'font-semibold',
+                  isDark ? 'text-white' : 'text-slate-900'
+                ]"
               >
+                self-taught UI/UX designer
+              </span>
               and
-              <span class="text-white font-semibold">
-                full-stack developer</span
+              <span
+                :class="[
+                  'font-semibold',
+                  isDark ? 'text-white' : 'text-slate-900'
+                ]"
               >
+                full-stack developer
+              </span>
               with over
-              <span class="text-purple-400 font-semibold">
-                2+ years of experience</span
+              <span
+                :class="[
+                  'font-semibold',
+                  isDark ? 'text-purple-400' : 'text-blue-600'
+                ]"
               >
+                2+ years of experience
+              </span>
               crafting meaningful and delightful digital products.
             </p>
 
             <p data-aos="fade-up">
               My passion lies in creating
-              <span class="text-white font-semibold"
-                >seamless user experiences</span
+              <span
+                :class="[
+                  'font-semibold',
+                  isDark ? 'text-white' : 'text-slate-900'
+                ]"
               >
+                seamless user experiences
+              </span>
               that perfectly balance user needs with business objectives. I
               believe great design is invisible—it just works.
             </p>
 
             <p
               data-aos="fade-left"
-              class="text-gray-400 text-base italic border-l-2 border-purple-500 pl-4"
+              :class="[
+                'text-base italic border-l-2 pl-4',
+                isDark
+                  ? 'text-gray-400 border-purple-500'
+                  : 'text-gray-600 border-blue-500'
+              ]"
             >
               "Design is not just what it looks like and feels like. Design is
               how it works." — This philosophy drives every project I undertake.
@@ -243,45 +336,16 @@
               v-for="(skill, index) in skills"
               :key="skill"
               :style="{ animationDelay: `${index * 100}ms` }"
-              class="px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 hover:border-purple-500/50 hover:bg-white/10 transition-all cursor-default"
+              :class="[
+                'px-4 py-2 backdrop-blur-sm border rounded-full text-sm transition-all cursor-default',
+                isDark
+                  ? 'bg-white/5 border-white/10 text-gray-300 hover:border-purple-500/50 hover:bg-white/10'
+                  : 'bg-blue-100/60 border-blue-300/50 text-gray-700 hover:border-blue-500/60 hover:bg-blue-200/60'
+              ]"
             >
               {{ skill }}
             </span>
           </div>
-
-          <!-- CTA Buttons -->
-          <!-- <div
-            class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4"
-          >
-            <button
-              @click="handleViewPortfolio"
-              class="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-semibold text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-all hover:scale-105"
-            >
-              <span class="flex items-center gap-2">
-                View Portfolio
-                <svg
-                  class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </span>
-            </button>
-
-            <button
-              @click="handleDownloadCV"
-              class="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full font-semibold text-white hover:bg-white/10 hover:border-purple-500/50 transition-all hover:scale-105"
-            >
-              Download CV
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -289,121 +353,115 @@
 </template>
 
 <script setup lang="ts">
-  interface Principle {
-    title: string;
-    description: string;
-  }
+import { ref, withDefaults, defineProps, onMounted, onBeforeUnmount, computed } from 'vue';
 
-  interface Stats {
-    experience: number;
-    projects: number;
-    clients?: number;
-  }
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
 
-  interface Props {
-    profileImage?: string;
-    skills?: string[];
-    stats?: Stats;
-    principles?: Principle[];
-  }
+interface Principle {
+  title: string;
+  description: string;
+}
 
-  // Props with defaults
-  const props = withDefaults(defineProps<Props>(), {
-    profileImage: "/images/me-banner.png",
-    skills: () => [
-      "UI/UX Design",
-      "Frontend Dev",
-      "Vue.js",
-      "Nuxt.js",
-      "Laravel",
-    ],
-    stats: () => ({
-      experience: 3,
-      projects: 50,
-      clients: 30,
-    }),
-    principles: () => [
-      {
-        title: "Design First",
-        description: "User-centered approach to every project",
-      },
-      {
-        title: "Clean Code",
-        description: "Maintainable and scalable solutions",
-      },
-      {
-        title: "Fast Delivery",
-        description: "Efficient workflow and timely results",
-      },
-    ],
+interface Stats {
+  experience: number;
+  projects: number;
+  clients?: number;
+}
+
+interface Props {
+  profileImage?: string;
+  skills?: string[];
+  stats?: Stats;
+  principles?: Principle[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  profileImage: "/images/me-banner.png",
+  skills: () => [
+    "UI/UX Design",
+    "Frontend Dev",
+    "Vue.js",
+    "Nuxt.js",
+    "Laravel",
+  ],
+  stats: () => ({
+    experience: 3,
+    projects: 50,
+    clients: 30,
+  }),
+  principles: () => [
+    {
+      title: "Design First",
+      description: "User-centered approach to every project",
+    },
+    {
+      title: "Clean Code",
+      description: "Maintainable and scalable solutions",
+    },
+    {
+      title: "Fast Delivery",
+      description: "Efficient workflow and timely results",
+    },
+  ],
+});
+
+const imageRef = ref<HTMLElement | null>(null);
+const isVisible = ref(false);
+
+onMounted(() => {
+  if (!imageRef.value) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isVisible.value = true;
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    }
+  );
+
+  observer.observe(imageRef.value);
+
+  onBeforeUnmount(() => {
+    observer.disconnect();
   });
-
-  // Reactive state
-  const imageRef = ref<HTMLElement | null>(null);
-  const isVisible = ref(false);
-
-  // Intersection Observer for scroll animation
-  onMounted(() => {
-    if (!imageRef.value) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            isVisible.value = true;
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      }
-    );
-
-    observer.observe(imageRef.value);
-
-    // Cleanup
-    onBeforeUnmount(() => {
-      observer.disconnect();
-    });
-  });
+});
 </script>
 
 <style scoped>
-  /* @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  } */
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-
-  .animate-float-delayed {
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 1s;
+  50% {
+    transform: translateY(-20px);
   }
+}
 
-  /* Smooth transitions */
-  .transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
 
-  .duration-800 {
-    transition-duration: 800ms;
-  }
+.animate-float-delayed {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
 
-  /* Focus states for accessibility */
-  button:focus-visible,
-  a:focus-visible {
-    outline: 2px solid #a855f7;
-    outline-offset: 2px;
-  }
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+}
 </style>

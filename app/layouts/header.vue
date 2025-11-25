@@ -1,127 +1,126 @@
 <script setup lang="ts">
-  import { ref, onMounted, onUnmounted, computed } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 
-  const isMobileMenuOpen = ref(false);
-  const activeSection = ref("banner");
-  const isScrolled = ref(false);
-  const isThemeMenuOpen = ref(false);
+const isMobileMenuOpen = ref(false);
+const activeSection = ref("banner");
+const isScrolled = ref(false);
+const isThemeMenuOpen = ref(false);
 
-  // Use Nuxt's color mode composable
-  const colorMode = useColorMode();
+// Use Nuxt's color mode composable
+const colorMode = useColorMode();
 
-  console.log("Current color mode:", colorMode.preference);
+// Computed property for dark mode state
+const isDark = computed(() => colorMode.value === "dark");
 
-  // Computed property for dark mode state
-  const isDarkMode = computed(() => colorMode.value === "dark");
-
-  function toggleMobileMenu() {
-    isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  }
-
-  function toggleThemeMenu() {
-    isThemeMenuOpen.value = !isThemeMenuOpen.value;
-  }
-
-  function setTheme(theme: "light" | "dark" | "system") {
-    colorMode.preference = theme;
+function toggleMobileMenu() {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+  // Close theme menu when opening mobile menu
+  if (isMobileMenuOpen.value) {
     isThemeMenuOpen.value = false;
   }
+}
 
-  function smoothScrollTo(elementId: string) {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-    isMobileMenuOpen.value = false;
+function toggleThemeMenu(event: Event) {
+  event.stopPropagation(); // Prevent event bubbling
+  isThemeMenuOpen.value = !isThemeMenuOpen.value;
+}
+
+function setTheme(theme: "light" | "dark" | "system") {
+  colorMode.preference = theme;
+  isThemeMenuOpen.value = false;
+}
+
+function smoothScrollTo(elementId: string) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }
+  isMobileMenuOpen.value = false;
+}
 
-  function handleScroll() {
-    isScrolled.value = window.scrollY > 50;
+function handleScroll() {
+  isScrolled.value = window.scrollY > 50;
 
-    // Update active section based on scroll position
-    const sections = [
-      "banner",
-      "aboutme",
-      "skills",
-      "experience",
-      "projects",
-      "certificates",
-      "contact",
-    ];
-    const scrollPosition = window.scrollY + 100;
+  // Update active section based on scroll position
+  const sections = [
+    "banner",
+    "aboutme",
+    "skills",
+    "experience",
+    "projects",
+    "certificates",
+    "contact",
+  ];
+  const scrollPosition = window.scrollY + 100;
 
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const offsetTop = element.offsetTop;
-        const offsetHeight = element.offsetHeight;
+  for (const section of sections) {
+    const element = document.getElementById(section);
+    if (element) {
+      const offsetTop = element.offsetTop;
+      const offsetHeight = element.offsetHeight;
 
-        if (
-          scrollPosition >= offsetTop &&
-          scrollPosition < offsetTop + offsetHeight
-        ) {
-          activeSection.value = section;
-          break;
-        }
+      if (
+        scrollPosition >= offsetTop &&
+        scrollPosition < offsetTop + offsetHeight
+      ) {
+        activeSection.value = section;
+        break;
       }
     }
   }
+}
 
-  // Close theme menu when clicking outside
-  function handleClickOutside(event: MouseEvent) {
-    const themeMenu = document.getElementById("theme-menu");
-    const themeButton = document.getElementById("theme-button");
-    if (
-      themeMenu &&
-      themeButton &&
-      !themeMenu.contains(event.target as Node) &&
-      !themeButton.contains(event.target as Node)
-    ) {
-      isThemeMenuOpen.value = false;
-    }
+// Close theme menu when clicking outside
+function handleClickOutside(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+  const themeButton = document.getElementById("theme-button");
+  const themeButtonMobile = document.getElementById("theme-button-mobile");
+  const themeMenu = document.getElementById("theme-menu");
+  const themeMenuMobile = document.getElementById("theme-menu-mobile");
+  
+  // Check if click is outside both desktop and mobile theme menus
+  const clickedOutsideDesktop = themeButton && !themeButton.contains(target) && 
+                                 themeMenu && !themeMenu.contains(target);
+  const clickedOutsideMobile = themeButtonMobile && !themeButtonMobile.contains(target) && 
+                                themeMenuMobile && !themeMenuMobile.contains(target);
+  
+  if (clickedOutsideDesktop && clickedOutsideMobile) {
+    isThemeMenuOpen.value = false;
   }
+}
 
-  onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("click", handleClickOutside);
-    handleScroll(); // Initial check
-  });
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  document.addEventListener("click", handleClickOutside);
+  handleScroll(); // Initial check
+});
 
-  onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
-    document.removeEventListener("click", handleClickOutside);
-  });
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
   <header
     :class="[
       'sticky top-0 z-50 transition-all duration-500',
-      isDarkMode
+      isDark
         ? isScrolled
-          ? // 💎 Glass effect when scrolled (dark mode)
-            'bg-white/10 border border-purple-500/20 shadow-2xl backdrop-blur-lg'
-          : // 🌌 Gradient background when not scrolled (dark mode)
-            'bg-gradient-to-br dark:from-slate-900 dark:via-purple-900 dark:to-blue-900 border border-white/10 shadow-md'
+          ? 'bg-white/10 border border-purple-500/20 shadow-2xl backdrop-blur-lg'
+          : 'bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 border border-white/10 shadow-md'
         : isScrolled
-        ? // 💎 Glass effect when scrolled (light mode)
-          'bg-blue-500/10 border border-blue-400/20 shadow-2xl backdrop-blur-lg'
-        : // 🌤 Gradient background when not scrolled (light mode)
-          'bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 border border-purple-400/10 shadow-md',
+        ? 'bg-white/50 border border-slate-200/40 shadow-lg backdrop-blur-lg'
+        : 'bg-gradient-to-br from-blue-50 via-slate-50 to-white border border-slate-200/20 shadow-sm',
     ]"
   >
     <div class="flex items-center justify-between px-4 md:px-16 py-2">
-      <!-- Debug info - remove in production -->
-      <!-- <div class="text-xs text-white/70">
-        Mode: {{ $colorMode.preference }} | Dark: {{ isDarkMode }}
-      </div> -->
-
       <!-- Logo -->
       <div
-        :class="isDarkMode ? 'text-white' : 'text-slate-800'"
+        :class="isDark ? 'text-white' : 'text-slate-800'"
         class="text-2xl font-bold"
       >
         <button
@@ -140,108 +139,31 @@
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-4">
         <button
-          @click="smoothScrollTo('banner')"
+          v-for="section in ['banner', 'aboutme', 'skills', 'experience', 'certificates', 'projects', 'contact']"
+          :key="section"
+          @click="smoothScrollTo(section)"
           :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'banner'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
+            'px-2 py-2 rounded-lg transition-all duration-300 font-medium capitalize',
+            activeSection === section
+              ? isDark
+                ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
+                : 'bg-blue-500/20 text-blue-600 border border-blue-400/30'
+              : isDark
               ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
               : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
           ]"
         >
-          Home
-        </button>
-        <button
-          @click="smoothScrollTo('aboutme')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'aboutme'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          About
-        </button>
-        <button
-          @click="smoothScrollTo('skills')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'skills'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          Skills
-        </button>
-        <button
-          @click="smoothScrollTo('experience')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'experience'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          Experience
+          {{ section === 'banner' ? 'Home' : section === 'aboutme' ? 'About' : section }}
         </button>
 
-        <button
-          @click="smoothScrollTo('certificates')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'certificates'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          Certificates
-        </button>
-
-        <button
-          @click="smoothScrollTo('projects')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'projects'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          Projects
-        </button>
-
-        <button
-          @click="smoothScrollTo('contact')"
-          :class="[
-            'px-2 py-2 rounded-lg transition-all duration-300 font-medium',
-            activeSection === 'contact'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-              : isDarkMode
-              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-          ]"
-        >
-          Contact
-        </button>
-
-        <!-- Theme Selector Dropdown -->
+        <!-- Desktop Theme Selector -->
         <div class="relative ml-4">
           <button
             id="theme-button"
             @click="toggleThemeMenu"
             :class="[
               'p-2 rounded-lg transition-all duration-300 flex items-center gap-2',
-              isDarkMode
+              isDark
                 ? 'text-white hover:bg-purple-500/10 hover:text-purple-300'
                 : 'text-slate-700 hover:bg-blue-500/10 hover:text-blue-600',
             ]"
@@ -283,7 +205,7 @@
             </svg>
           </button>
 
-          <!-- Dropdown Menu -->
+          <!-- Desktop Dropdown Menu -->
           <Transition
             enter-active-class="transition ease-out duration-200"
             enter-from-class="opacity-0 scale-95"
@@ -297,7 +219,7 @@
               id="theme-menu"
               :class="[
                 'absolute right-0 mt-2 w-48 rounded-lg shadow-xl border overflow-hidden z-50',
-                isDarkMode
+                isDark
                   ? 'bg-slate-900/95 backdrop-blur-md border-purple-500/20'
                   : 'bg-white/95 backdrop-blur-md border-blue-400/20',
               ]"
@@ -308,10 +230,10 @@
                 :class="[
                   'w-full px-4 py-3 flex items-center gap-3 transition-colors',
                   colorMode.preference === 'light'
-                    ? isDarkMode
+                    ? isDark
                       ? 'bg-purple-500/20 text-purple-300'
                       : 'bg-blue-500/20 text-blue-600'
-                    : isDarkMode
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
@@ -342,10 +264,10 @@
                 :class="[
                   'w-full px-4 py-3 flex items-center gap-3 transition-colors',
                   colorMode.preference === 'dark'
-                    ? isDarkMode
+                    ? isDark
                       ? 'bg-purple-500/20 text-purple-300'
                       : 'bg-blue-500/20 text-blue-600'
-                    : isDarkMode
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
@@ -378,10 +300,10 @@
                 :class="[
                   'w-full px-4 py-3 flex items-center gap-3 transition-colors',
                   colorMode.preference === 'system'
-                    ? isDarkMode
+                    ? isDark
                       ? 'bg-purple-500/20 text-purple-300'
                       : 'bg-blue-500/20 text-blue-600'
-                    : isDarkMode
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
@@ -411,15 +333,15 @@
       </nav>
 
       <!-- Mobile Actions -->
-      <!-- Mobile Actions -->
       <div class="md:hidden flex items-center space-x-2">
-        <!-- Theme Selector Mobile -->
+        <!-- Mobile Theme Selector -->
         <div class="relative">
           <button
+            id="theme-button-mobile"
             @click="toggleThemeMenu"
             :class="[
               'p-2 rounded-lg transition-all duration-300',
-              isDarkMode
+              isDark
                 ? 'text-white hover:bg-purple-500/10 hover:text-purple-300'
                 : 'text-slate-700 hover:bg-blue-500/10 hover:text-blue-600',
             ]"
@@ -443,7 +365,7 @@
             </svg>
           </button>
 
-          <!-- Mobile Theme Menu -->
+          <!-- Mobile Theme Dropdown -->
           <Transition
             enter-active-class="transition ease-out duration-200"
             enter-from-class="opacity-0 scale-95"
@@ -454,9 +376,10 @@
           >
             <div
               v-show="isThemeMenuOpen"
+              id="theme-menu-mobile"
               :class="[
-                'absolute right-0 mt-2 w-40 rounded-lg shadow-xl border overflow-hidden z-50',
-                isDarkMode
+                'absolute right-0 mt-2 w-40 rounded-lg shadow-xl border overflow-hidden z-[60]',
+                isDark
                   ? 'bg-slate-900/95 backdrop-blur-md border-purple-500/20'
                   : 'bg-white/95 backdrop-blur-md border-blue-400/20',
               ]"
@@ -464,54 +387,63 @@
               <button
                 @click="setTheme('light')"
                 :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors',
+                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
                   colorMode.preference === 'light'
-                    ? 'bg-purple-500/20 text-purple-300'
-                    : isDarkMode
+                    ? isDark
+                      ? 'bg-purple-500/20 text-purple-300'
+                      : 'bg-blue-500/20 text-blue-600'
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
               >
-                ☀️ Light
+                <span>☀️</span>
+                <span>Light</span>
               </button>
               <button
                 @click="setTheme('dark')"
                 :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors',
+                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
                   colorMode.preference === 'dark'
-                    ? 'bg-purple-500/20 text-purple-300'
-                    : isDarkMode
+                    ? isDark
+                      ? 'bg-purple-500/20 text-purple-300'
+                      : 'bg-blue-500/20 text-blue-600'
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
               >
-                🌙 Dark
+                <span>🌙</span>
+                <span>Dark</span>
               </button>
               <button
                 @click="setTheme('system')"
                 :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors',
+                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
                   colorMode.preference === 'system'
-                    ? 'bg-purple-500/20 text-purple-300'
-                    : isDarkMode
+                    ? isDark
+                      ? 'bg-purple-500/20 text-purple-300'
+                      : 'bg-blue-500/20 text-blue-600'
+                    : isDark
                     ? 'text-white hover:bg-purple-500/10'
                     : 'text-slate-700 hover:bg-blue-500/10',
                 ]"
               >
-                💻 System
+                <span>💻</span>
+                <span>System</span>
               </button>
             </div>
           </Transition>
         </div>
 
-        <!-- Mobile menu button -->
+        <!-- Mobile Menu Button -->
         <button
           @click="toggleMobileMenu"
           aria-label="Toggle navigation menu"
           :aria-expanded="isMobileMenuOpen"
           :class="[
             'p-2 rounded-lg transition-colors',
-            isDarkMode
+            isDark
               ? 'text-white hover:bg-purple-500/10'
               : 'text-slate-700 hover:bg-blue-500/10',
           ]"
@@ -548,94 +480,50 @@
       </div>
     </div>
 
-    <!-- Mobile Navigation -->
-    <div
-      v-show="isMobileMenuOpen"
-      :class="[
-        'md:hidden backdrop-blur-md px-4 pt-2 pb-4 space-y-2 border-t',
-        isDarkMode
-          ? 'bg-slate-950/95 border-purple-500/20'
-          : 'bg-blue-50/95 border-blue-400/20',
-      ]"
+    <!-- Mobile Navigation Menu -->
+    <Transition
+      enter-active-class="transition ease-out duration-200"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition ease-in duration-150"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
     >
-      <button
-        @click="smoothScrollTo('banner')"
+      <div
+        v-show="isMobileMenuOpen"
         :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'banner'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
+          'md:hidden backdrop-blur-md px-4 pt-2 pb-4 space-y-2 border-t',
+          isDark
+            ? 'bg-slate-950/95 border-purple-500/20'
+            : 'bg-blue-50/95 border-blue-400/20',
         ]"
       >
-        Home
-      </button>
-      <button
-        @click="smoothScrollTo('aboutme')"
-        :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'aboutme'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-        ]"
-      >
-        About
-      </button>
-      <button
-        @click="smoothScrollTo('skills')"
-        :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'skills'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-        ]"
-      >
-        Skills
-      </button>
-      <button
-        @click="smoothScrollTo('experience')"
-        :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'experience'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-        ]"
-      >
-        Experience
-      </button>
-      <button
-        @click="smoothScrollTo('projects')"
-        :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'projects'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-        ]"
-      >
-        Projects
-      </button>
-      <button
-        @click="smoothScrollTo('contact')"
-        :class="[
-          'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300',
-          activeSection === 'contact'
-            ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
-            : isDarkMode
-            ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
-            : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
-        ]"
-      >
-        Contact
-      </button>
-    </div>
+        <button
+          v-for="section in ['banner', 'aboutme', 'skills', 'experience', 'certificates', 'projects', 'contact']"
+          :key="section"
+          @click="smoothScrollTo(section)"
+          :class="[
+            'block w-full text-left px-3 py-2 rounded-lg transition-all duration-300 capitalize',
+            activeSection === section
+              ? isDark
+                ? 'bg-purple-500/20 text-purple-300 border border-purple-400/30'
+                : 'bg-blue-500/20 text-blue-600 border border-blue-400/30'
+              : isDark
+              ? 'text-white hover:text-purple-300 hover:bg-purple-500/10'
+              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
+          ]"
+        >
+          {{ section === 'banner' ? 'Home' : section === 'aboutme' ? 'About' : section }}
+        </button>
+      </div>
+    </Transition>
   </header>
 </template>
+
+<style scoped>
+/* Ensure dropdowns appear above mobile menu */
+#theme-menu,
+#theme-menu-mobile {
+  position: absolute;
+}
+</style>

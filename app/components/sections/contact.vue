@@ -9,17 +9,29 @@
     >
       <div
         data-aos="fade-left"
-        class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500"
+        class="h-px w-12"
+        :class="{
+          'bg-gradient-to-r from-transparent to-purple-500': isDarkMode,
+          'bg-gradient-to-r from-transparent to-blue-600': !isDarkMode,
+        }"
       ></div>
       <span
         data-aos="fade-down"
-        class="text-purple-400 uppercase tracking-wider text-sm md:text-lg font-semibold"
+        :class="{
+          'text-purple-400': isDarkMode,
+          'text-blue-600': !isDarkMode,
+        }"
+        class="uppercase tracking-wider text-sm md:text-lg font-semibold"
       >
         Get In Touch
       </span>
       <div
         data-aos="fade-right"
-        class="h-px flex-1 bg-gradient-to-r from-purple-500 to-transparent max-w-xs"
+        class="h-px flex-1 max-w-xs"
+        :class="{
+          'bg-gradient-to-r from-purple-500 to-transparent': isDarkMode,
+          'bg-gradient-to-r from-blue-600 to-transparent': !isDarkMode,
+        }"
       ></div>
     </Motion>
 
@@ -270,7 +282,10 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive } from "vue";
+  import { ref, reactive, computed } from "vue";
+
+  const colorMode = useColorMode();
+  const isDarkMode = computed(() => colorMode.value === "dark");
 
   const form = reactive({
     name: "",

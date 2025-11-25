@@ -1,5 +1,11 @@
+<script setup lang="ts">
+const colorMode = useColorMode();
+</script>
+
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div :class="{ dark: colorMode.value === 'dark' }">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
