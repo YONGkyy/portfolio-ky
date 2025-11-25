@@ -1,107 +1,106 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from "vue";
+  import { Monitor, Moon, Sun } from "lucide-vue-next";
+  import { ref, onMounted, onUnmounted, computed } from "vue";
 
-const isMobileMenuOpen = ref(false);
-const activeSection = ref("banner");
-const isScrolled = ref(false);
-const isThemeMenuOpen = ref(false);
+  const isMobileMenuOpen = ref(false);
+  const activeSection = ref("banner");
+  const isScrolled = ref(false);
+  const isThemeMenuOpen = ref(false);
 
-// Use Nuxt's color mode composable
-const colorMode = useColorMode();
+  // Use Nuxt's color mode composable
+  const colorMode = useColorMode();
 
-// Computed property for dark mode state
-const isDark = computed(() => colorMode.value === "dark");
+  // Computed property for dark mode state
+  const isDark = computed(() => colorMode.value === "dark");
 
-function toggleMobileMenu() {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  // Close theme menu when opening mobile menu
-  if (isMobileMenuOpen.value) {
-    isThemeMenuOpen.value = false;
+  const rotation = ref(0);
+
+  function toggleMode() {
+    // Increment rotation by 360° each click
+    rotation.value += 360;
+
+    // Toggle dark/light mode
+    colorMode.preference = colorMode.preference === "light" ? "dark" : "light";
   }
-}
 
-function toggleThemeMenu(event: Event) {
-  event.stopPropagation(); // Prevent event bubbling
-  isThemeMenuOpen.value = !isThemeMenuOpen.value;
-}
-
-function setTheme(theme: "light" | "dark" | "system") {
-  colorMode.preference = theme;
-  isThemeMenuOpen.value = false;
-}
-
-function smoothScrollTo(elementId: string) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-  isMobileMenuOpen.value = false;
-}
-
-function handleScroll() {
-  isScrolled.value = window.scrollY > 50;
-
-  // Update active section based on scroll position
-  const sections = [
-    "banner",
-    "aboutme",
-    "skills",
-    "experience",
-    "projects",
-    "certificates",
-    "contact",
-  ];
-  const scrollPosition = window.scrollY + 100;
-
-  for (const section of sections) {
-    const element = document.getElementById(section);
+  function smoothScrollTo(elementId: string) {
+    const element = document.getElementById(elementId);
     if (element) {
-      const offsetTop = element.offsetTop;
-      const offsetHeight = element.offsetHeight;
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    isMobileMenuOpen.value = false;
+  }
 
-      if (
-        scrollPosition >= offsetTop &&
-        scrollPosition < offsetTop + offsetHeight
-      ) {
-        activeSection.value = section;
-        break;
+  function handleScroll() {
+    isScrolled.value = window.scrollY > 50;
+
+    // Update active section based on scroll position
+    const sections = [
+      "banner",
+      "aboutme",
+      "skills",
+      "experience",
+      "projects",
+      "certificates",
+      "contact",
+    ];
+    const scrollPosition = window.scrollY + 100;
+
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const offsetTop = element.offsetTop;
+        const offsetHeight = element.offsetHeight;
+
+        if (
+          scrollPosition >= offsetTop &&
+          scrollPosition < offsetTop + offsetHeight
+        ) {
+          activeSection.value = section;
+          break;
+        }
       }
     }
   }
-}
 
-// Close theme menu when clicking outside
-function handleClickOutside(event: MouseEvent) {
-  const target = event.target as HTMLElement;
-  const themeButton = document.getElementById("theme-button");
-  const themeButtonMobile = document.getElementById("theme-button-mobile");
-  const themeMenu = document.getElementById("theme-menu");
-  const themeMenuMobile = document.getElementById("theme-menu-mobile");
-  
-  // Check if click is outside both desktop and mobile theme menus
-  const clickedOutsideDesktop = themeButton && !themeButton.contains(target) && 
-                                 themeMenu && !themeMenu.contains(target);
-  const clickedOutsideMobile = themeButtonMobile && !themeButtonMobile.contains(target) && 
-                                themeMenuMobile && !themeMenuMobile.contains(target);
-  
-  if (clickedOutsideDesktop && clickedOutsideMobile) {
-    isThemeMenuOpen.value = false;
+  // Close theme menu when clicking outside
+  function handleClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const themeButton = document.getElementById("theme-button");
+    const themeButtonMobile = document.getElementById("theme-button-mobile");
+    const themeMenu = document.getElementById("theme-menu");
+    const themeMenuMobile = document.getElementById("theme-menu-mobile");
+
+    // Check if click is outside both desktop and mobile theme menus
+    const clickedOutsideDesktop =
+      themeButton &&
+      !themeButton.contains(target) &&
+      themeMenu &&
+      !themeMenu.contains(target);
+    const clickedOutsideMobile =
+      themeButtonMobile &&
+      !themeButtonMobile.contains(target) &&
+      themeMenuMobile &&
+      !themeMenuMobile.contains(target);
+
+    if (clickedOutsideDesktop && clickedOutsideMobile) {
+      isThemeMenuOpen.value = false;
+    }
   }
-}
 
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-  document.addEventListener("click", handleClickOutside);
-  handleScroll(); // Initial check
-});
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("click", handleClickOutside);
+    handleScroll(); // Initial check
+  });
 
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  document.removeEventListener("click", handleClickOutside);
-});
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+    document.removeEventListener("click", handleClickOutside);
+  });
 </script>
 
 <template>
@@ -139,7 +138,15 @@ onUnmounted(() => {
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-4">
         <button
-          v-for="section in ['banner', 'aboutme', 'skills', 'experience', 'certificates', 'projects', 'contact']"
+          v-for="section in [
+            'banner',
+            'aboutme',
+            'skills',
+            'experience',
+            'certificates',
+            'projects',
+            'contact',
+          ]"
           :key="section"
           @click="smoothScrollTo(section)"
           :class="[
@@ -153,288 +160,45 @@ onUnmounted(() => {
               : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
           ]"
         >
-          {{ section === 'banner' ? 'Home' : section === 'aboutme' ? 'About' : section }}
+          {{
+            section === "banner"
+              ? "Home"
+              : section === "aboutme"
+              ? "About"
+              : section
+          }}
         </button>
 
-        <!-- Desktop Theme Selector -->
-        <div class="relative ml-4">
-          <button
-            id="theme-button"
-            @click="toggleThemeMenu"
-            :class="[
-              'p-2 rounded-lg transition-all duration-300 flex items-center gap-2',
-              isDark
-                ? 'text-white hover:bg-purple-500/10 hover:text-purple-300'
-                : 'text-slate-700 hover:bg-blue-500/10 hover:text-blue-600',
-            ]"
-            :title="`Current theme: ${colorMode.preference}`"
-          >
-            <!-- Dark Mode Icon -->
-            <svg
-              v-if="colorMode.value === 'dark'"
-              class="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <!-- Light Mode Icon -->
-            <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
-              />
-            </svg>
-            <!-- Chevron -->
-            <svg
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': isThemeMenuOpen }"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-
-          <!-- Desktop Dropdown Menu -->
-          <Transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 scale-95"
-            enter-to-class="opacity-100 scale-100"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 scale-100"
-            leave-to-class="opacity-0 scale-95"
-          >
-            <div
-              v-show="isThemeMenuOpen"
-              id="theme-menu"
-              :class="[
-                'absolute right-0 mt-2 w-48 rounded-lg shadow-xl border overflow-hidden z-50',
-                isDark
-                  ? 'bg-slate-900/95 backdrop-blur-md border-purple-500/20'
-                  : 'bg-white/95 backdrop-blur-md border-blue-400/20',
-              ]"
-            >
-              <!-- Light Option -->
-              <button
-                @click="setTheme('light')"
-                :class="[
-                  'w-full px-4 py-3 flex items-center gap-3 transition-colors',
-                  colorMode.preference === 'light'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
-                  />
-                </svg>
-                <span class="font-medium">Light</span>
-                <svg
-                  v-if="colorMode.preference === 'light'"
-                  class="w-4 h-4 ml-auto"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-
-              <!-- Dark Option -->
-              <button
-                @click="setTheme('dark')"
-                :class="[
-                  'w-full px-4 py-3 flex items-center gap-3 transition-colors',
-                  colorMode.preference === 'dark'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    fill-rule="evenodd"
-                    d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="font-medium">Dark</span>
-                <svg
-                  v-if="colorMode.preference === 'dark'"
-                  class="w-4 h-4 ml-auto"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-
-              <!-- System Option -->
-              <button
-                @click="setTheme('system')"
-                :class="[
-                  'w-full px-4 py-3 flex items-center gap-3 transition-colors',
-                  colorMode.preference === 'system'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M4 6a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 18a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2v-1z"
-                  />
-                </svg>
-                <span class="font-medium">System</span>
-                <svg
-                  v-if="colorMode.preference === 'system'"
-                  class="w-4 h-4 ml-auto"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-          </Transition>
-        </div>
+        <!-- Desktop Theme Toggle -->
+        <button
+          @click="toggleMode"
+          class="p-2 rounded-full transition-transform duration-500"
+          :style="`transform: rotate(${rotation}deg)`"
+          :title="`Current mode: ${colorMode.preference}`"
+        >
+          <Sun
+            v-if="colorMode.preference === 'light'"
+            class="w-8 h-8 text-yellow-500"
+          />
+          <Moon v-else class="w-8 h-8 text-purple-400" />
+        </button>
       </nav>
 
       <!-- Mobile Actions -->
       <div class="md:hidden flex items-center space-x-2">
         <!-- Mobile Theme Selector -->
-        <div class="relative">
-          <button
-            id="theme-button-mobile"
-            @click="toggleThemeMenu"
-            :class="[
-              'p-2 rounded-lg transition-all duration-300',
-              isDark
-                ? 'text-white hover:bg-purple-500/10 hover:text-purple-300'
-                : 'text-slate-700 hover:bg-blue-500/10 hover:text-blue-600',
-            ]"
-          >
-            <svg
-              v-if="colorMode.value === 'dark'"
-              class="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
-              />
-            </svg>
-          </button>
-
-          <!-- Mobile Theme Dropdown -->
-          <Transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 scale-95"
-            enter-to-class="opacity-100 scale-100"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 scale-100"
-            leave-to-class="opacity-0 scale-95"
-          >
-            <div
-              v-show="isThemeMenuOpen"
-              id="theme-menu-mobile"
-              :class="[
-                'absolute right-0 mt-2 w-40 rounded-lg shadow-xl border overflow-hidden z-[60]',
-                isDark
-                  ? 'bg-slate-900/95 backdrop-blur-md border-purple-500/20'
-                  : 'bg-white/95 backdrop-blur-md border-blue-400/20',
-              ]"
-            >
-              <button
-                @click="setTheme('light')"
-                :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
-                  colorMode.preference === 'light'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <span>☀️</span>
-                <span>Light</span>
-              </button>
-              <button
-                @click="setTheme('dark')"
-                :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
-                  colorMode.preference === 'dark'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <span>🌙</span>
-                <span>Dark</span>
-              </button>
-              <button
-                @click="setTheme('system')"
-                :class="[
-                  'w-full px-4 py-2 text-left text-sm transition-colors flex items-center gap-2',
-                  colorMode.preference === 'system'
-                    ? isDark
-                      ? 'bg-purple-500/20 text-purple-300'
-                      : 'bg-blue-500/20 text-blue-600'
-                    : isDark
-                    ? 'text-white hover:bg-purple-500/10'
-                    : 'text-slate-700 hover:bg-blue-500/10',
-                ]"
-              >
-                <span>💻</span>
-                <span>System</span>
-              </button>
-            </div>
-          </Transition>
-        </div>
+        <button
+          @click="toggleMode"
+          class="p-2 rounded-full transition-transform duration-300"
+          :class="{ 'rotate-180': isRotating }"
+          :title="`Current mode: ${colorMode.preference}`"
+        >
+          <Sun
+            v-if="colorMode.preference === 'light'"
+            class="w-8 h-8 text-yellow-500"
+          />
+          <Moon v-else class="w-8 h-8 text-purple-400" />
+        </button>
 
         <!-- Mobile Menu Button -->
         <button
@@ -499,7 +263,15 @@ onUnmounted(() => {
         ]"
       >
         <button
-          v-for="section in ['banner', 'aboutme', 'skills', 'experience', 'certificates', 'projects', 'contact']"
+          v-for="section in [
+            'banner',
+            'aboutme',
+            'skills',
+            'experience',
+            'certificates',
+            'projects',
+            'contact',
+          ]"
           :key="section"
           @click="smoothScrollTo(section)"
           :class="[
@@ -513,7 +285,13 @@ onUnmounted(() => {
               : 'text-slate-700 hover:text-blue-600 hover:bg-blue-500/10',
           ]"
         >
-          {{ section === 'banner' ? 'Home' : section === 'aboutme' ? 'About' : section }}
+          {{
+            section === "banner"
+              ? "Home"
+              : section === "aboutme"
+              ? "About"
+              : section
+          }}
         </button>
       </div>
     </Transition>
@@ -521,9 +299,9 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* Ensure dropdowns appear above mobile menu */
-#theme-menu,
-#theme-menu-mobile {
-  position: absolute;
-}
+  /* Ensure dropdowns appear above mobile menu */
+  #theme-menu,
+  #theme-menu-mobile {
+    position: absolute;
+  }
 </style>
