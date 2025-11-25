@@ -276,26 +276,6 @@ function scrollToSection(elementId: string) {
         >
           &copy; {{ new Date().getFullYear() }} Keo Yinyong. All rights reserved.
         </p>
-        <div class="flex space-x-6 text-sm">
-          <NuxtLink 
-            to="/privacy" 
-            class="transition-colors" 
-            :class="isDark 
-              ? 'text-slate-400 hover:text-purple-300' 
-              : 'text-slate-500 hover:text-blue-600'"
-          >
-            Privacy Policy
-          </NuxtLink>
-          <NuxtLink 
-            to="/terms" 
-            class="transition-colors" 
-            :class="isDark 
-              ? 'text-slate-400 hover:text-purple-300' 
-              : 'text-slate-500 hover:text-blue-600'"
-          >
-            Terms of Service
-          </NuxtLink>
-        </div>
       </div>
     </div>
   </footer>
