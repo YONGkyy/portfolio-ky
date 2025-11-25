@@ -189,8 +189,8 @@
         <!-- Mobile Theme Selector -->
         <button
           @click="toggleMode"
-          class="p-2 rounded-full transition-transform duration-300"
-          :class="{ 'rotate-180': isRotating }"
+          class="p-2 rounded-full transition-transform duration-500"
+          :style="`transform: rotate(${rotation}deg)`"
           :title="`Current mode: ${colorMode.preference}`"
         >
           <Sun
