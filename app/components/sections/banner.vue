@@ -10,8 +10,8 @@ const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === "dark");
 
 // Theme-aware classes helper
-const themeClass = (lightClass: string, darkClass: string) => 
-  computed(() => isDark.value ? darkClass : lightClass);
+const themeClass = (lightClass: string, darkClass: string) =>
+  computed(() => (isDark.value ? darkClass : lightClass));
 
 interface SocialLink {
   name: string;
@@ -193,7 +193,7 @@ const openLink = (url: string) => {
             :class="[
               isDark
                 ? 'bg-white/5 border-purple-500/20'
-                : 'bg-blue-50/80 border-blue-200/60'
+                : 'bg-blue-50/80 border-blue-200/60',
             ]"
           >
             <span class="relative flex h-3 w-3">
@@ -206,7 +206,7 @@ const openLink = (url: string) => {
                 :class="isDark ? 'bg-purple-500' : 'bg-blue-600'"
               ></span>
             </span>
-            <span 
+            <span
               class="text-sm font-medium"
               :class="isDark ? 'text-purple-300' : 'text-blue-700'"
             >
@@ -241,12 +241,16 @@ const openLink = (url: string) => {
               >
                 <span
                   class="bg-gradient-to-r bg-clip-text text-transparent"
-                  :class="isDark 
-                    ? 'from-white via-purple-200 to-white' 
-                    : 'from-slate-900 via-blue-600 to-slate-900'"
+                  :class="
+                    isDark
+                      ? 'from-white via-purple-200 to-white'
+                      : 'from-slate-900 via-blue-600 to-slate-900'
+                  "
                 >
                   {{ nameTyping.displayText }}
-                  <span v-if="!nameTyping.isComplete" class="animate-blink">|</span>
+                  <span v-if="!nameTyping.isComplete" class="animate-blink"
+                    >|</span
+                  >
                 </span>
               </h1>
             </Motion>
@@ -267,8 +271,11 @@ const openLink = (url: string) => {
                   <span
                     class="bg-gradient-to-r bg-clip-text text-transparent from-purple-400 via-pink-400 to-indigo-400"
                   >
-                    <span class="inline-block min-w-[200px] sm:min-w-[280px] text-left">
-                      {{ roleCycling.currentRole }}<span class="animate-blink ml-1">|</span>
+                    <span
+                      class="inline-block min-w-[200px] sm:min-w-[280px] text-left"
+                    >
+                      {{ roleCycling.currentRole
+                      }}<span class="animate-blink ml-1">|</span>
                     </span>
                   </span>
                 </span>
@@ -283,7 +290,7 @@ const openLink = (url: string) => {
             :transition="{ delay: 0.6 }"
             class="max-w-2xl mx-auto lg:mx-0"
           >
-            <p 
+            <p
               class="text-lg sm:text-xl leading-relaxed"
               :class="isDark ? 'text-gray-400' : 'text-gray-600'"
             >
@@ -306,7 +313,9 @@ const openLink = (url: string) => {
               >
                 <span class="relative z-10 flex items-center gap-2">
                   Explore
-                  <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                  <i
+                    class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"
+                  ></i>
                 </span>
               </Motion>
             </a>
@@ -316,9 +325,11 @@ const openLink = (url: string) => {
                 :whileHover="{ scale: 1.05 }"
                 :whileTap="{ scale: 0.95 }"
                 class="px-8 py-4 rounded-full font-semibold transition-all cursor-pointer inline-block"
-                :class="isDark
-                  ? 'bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10'
-                  : 'bg-blue-500/10 border border-blue-300/50 text-blue-700 hover:bg-blue-500/20'"
+                :class="
+                  isDark
+                    ? 'bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10'
+                    : 'bg-blue-500/10 border border-blue-300/50 text-blue-700 hover:bg-blue-500/20'
+                "
               >
                 Download CV
               </Motion>
@@ -332,7 +343,7 @@ const openLink = (url: string) => {
             :transition="{ delay: 0.8 }"
             class="flex items-center justify-center lg:justify-start gap-4 pt-2"
           >
-            <span 
+            <span
               class="text-sm font-medium"
               :class="isDark ? 'text-gray-500' : 'text-gray-600'"
             >
@@ -348,9 +359,11 @@ const openLink = (url: string) => {
                 :whileHover="{ scale: 1.1, y: -2 }"
                 :whileTap="{ scale: 0.95 }"
                 class="w-12 h-12 rounded-full backdrop-blur-sm border flex items-center justify-center transition-all cursor-pointer"
-                :class="isDark
-                  ? 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-purple-500/50 hover:bg-white/10'
-                  : 'bg-blue-50/80 border-blue-200/60 text-gray-600 hover:text-blue-700 hover:border-blue-400/60 hover:bg-blue-100/80'"
+                :class="
+                  isDark
+                    ? 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-purple-500/50 hover:bg-white/10'
+                    : 'bg-blue-50/80 border-blue-200/60 text-gray-600 hover:text-blue-700 hover:border-blue-400/60 hover:bg-blue-100/80'
+                "
                 @click="openLink(social.url)"
               >
                 <i :class="social.icon" class="text-lg"></i>
@@ -366,10 +379,12 @@ const openLink = (url: string) => {
             class="grid grid-cols-3 gap-6 pt-8 max-w-lg mx-auto lg:mx-0"
           >
             <div class="text-center lg:text-left">
-              <div class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <div
+                class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+              >
                 2+
               </div>
-              <div 
+              <div
                 class="text-sm mt-1"
                 :class="isDark ? 'text-gray-500' : 'text-gray-600'"
               >
@@ -398,7 +413,9 @@ const openLink = (url: string) => {
               :transition="{ duration: 20, repeat: Infinity, ease: 'linear' }"
               class="absolute inset-0"
             >
-              <div class="absolute inset-0 rounded-full border-4 border-dashed border-purple-500/30"></div>
+              <div
+                class="absolute inset-0 rounded-full border-4 border-dashed border-purple-500/30"
+              ></div>
             </Motion>
 
             <Motion
@@ -406,21 +423,27 @@ const openLink = (url: string) => {
               :transition="{ duration: 25, repeat: Infinity, ease: 'linear' }"
               class="absolute inset-8"
             >
-              <div class="absolute inset-0 rounded-full border-2 border-dotted border-pink-500/30"></div>
+              <div
+                class="absolute inset-0 rounded-full border-2 border-dotted border-pink-500/30"
+              ></div>
             </Motion>
 
             <!-- Profile Card -->
             <div
               class="relative aspect-square rounded-3xl backdrop-blur-xl border shadow-2xl p-8"
-              :class="isDark 
-                ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-white/10' 
-                : 'bg-gradient-to-br from-purple-100/50 to-pink-100/50 border-blue-200/40'"
+              :class="
+                isDark
+                  ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-white/10'
+                  : 'bg-gradient-to-br from-purple-100/50 to-pink-100/50 border-blue-200/40'
+              "
             >
               <div
                 class="absolute inset-0 rounded-3xl"
-                :class="isDark 
-                  ? 'bg-gradient-to-br from-purple-500/5 to-pink-500/5' 
-                  : 'bg-gradient-to-br from-blue-50/30 to-purple-50/30'"
+                :class="
+                  isDark
+                    ? 'bg-gradient-to-br from-purple-500/5 to-pink-500/5'
+                    : 'bg-gradient-to-br from-blue-50/30 to-purple-50/30'
+                "
               ></div>
 
               <!-- Profile Image with transparent background -->
@@ -457,21 +480,25 @@ const openLink = (url: string) => {
                 :style="orb.position"
                 class="absolute hidden lg:block pointer-events-none"
               >
-                <div 
+                <div
                   class="relative rounded-full"
                   :style="{
                     width: `${orb.size}px`,
                     height: `${orb.size}px`,
                     backgroundColor: orb.color,
-                    boxShadow: `0 0 ${orb.size * 2}px ${orb.color}, 0 0 ${orb.size * 4}px ${orb.color}`,
+                    boxShadow: `0 0 ${orb.size * 2}px ${orb.color}, 0 0 ${
+                      orb.size * 4
+                    }px ${orb.color}`,
                   }"
                 >
                   <!-- Inner glow -->
-                  <div 
+                  <div
                     class="absolute inset-0 rounded-full animate-pulse"
                     :style="{
                       backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                      boxShadow: `inset 0 0 ${orb.size / 2}px rgba(255, 255, 255, 0.9)`,
+                      boxShadow: `inset 0 0 ${
+                        orb.size / 2
+                      }px rgba(255, 255, 255, 0.9)`,
                     }"
                   />
                 </div>
@@ -479,8 +506,12 @@ const openLink = (url: string) => {
             </div>
 
             <!-- Corner Decorations -->
-            <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50"></div>
-            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-50"></div>
+            <div
+              class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50"
+            ></div>
+            <div
+              class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-50"
+            ></div>
           </div>
         </Motion>
       </div>
@@ -505,8 +536,13 @@ const openLink = (url: string) => {
 
 <style scoped>
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .animate-blink {

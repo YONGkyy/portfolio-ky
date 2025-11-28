@@ -56,6 +56,18 @@ export default defineNuxtConfig({
           content: "Yong, personal blog, technology, lifestyle, travel",
         },
       ],
+       link: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "images/me-banner.png"  // <-- your favicon file path in the `public/` folder
+      },
+      // optional: Apple touch icon
+      {
+        rel: "apple-touch-icon",
+        href: "images/me-banner.png"
+      }
+    ]
     },
   },
   nitro: {
