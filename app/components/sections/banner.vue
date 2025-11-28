@@ -19,11 +19,13 @@ interface SocialLink {
   url: string;
 }
 
-interface TechItem {
-  name: string;
-  icon: string;
+interface FloatingOrb {
+  id: number;
+  size: number;
   color: string;
   position: Record<string, string>;
+  delay: number;
+  duration: number;
 }
 
 const props = defineProps<{
@@ -88,60 +90,78 @@ const socialLinks = props.socialLinks || [
   },
 ];
 
-const visibleTechStack: TechItem[] = [
+const floatingOrbs: FloatingOrb[] = [
   {
-    name: "JavaScript",
-    icon: "fab fa-js-square",
-    color: "#F7DF1E",
-    position: { top: "-6%", left: "45%" },
+    id: 1,
+    size: 16,
+    color: isDark.value ? "rgba(168, 85, 247, 0.8)" : "rgba(147, 51, 234, 0.6)",
+    position: { top: "5%", left: "48%" },
+    delay: 0,
+    duration: 4,
   },
   {
-    name: "Vue.js",
-    icon: "fab fa-vuejs",
-    color: "#4FC08D",
-    position: { top: "-10%", right: "-10%" },
+    id: 2,
+    size: 12,
+    color: isDark.value ? "rgba(236, 72, 153, 0.8)" : "rgba(219, 39, 119, 0.6)",
+    position: { top: "-8%", right: "-8%" },
+    delay: 0.5,
+    duration: 5,
   },
   {
-    name: "Node.js",
-    icon: "fab fa-node-js",
-    color: "#339933",
-    position: { bottom: "10%", left: "-15%" },
+    id: 3,
+    size: 20,
+    color: isDark.value ? "rgba(99, 102, 241, 0.8)" : "rgba(79, 70, 229, 0.6)",
+    position: { bottom: "12%", left: "-12%" },
+    delay: 1,
+    duration: 6,
   },
   {
-    name: "CSS3",
-    icon: "fab fa-css3-alt",
-    color: "#1572B6",
-    position: { top: "10%", right: "-20%" },
+    id: 4,
+    size: 14,
+    color: isDark.value ? "rgba(168, 85, 247, 0.7)" : "rgba(147, 51, 234, 0.5)",
+    position: { top: "15%", right: "-18%" },
+    delay: 0.3,
+    duration: 5.5,
   },
   {
-    name: "HTML5",
-    icon: "fab fa-html5",
-    color: "#E34F26",
-    position: { bottom: "-10%", left: "-15%" },
+    id: 5,
+    size: 18,
+    color: isDark.value ? "rgba(236, 72, 153, 0.7)" : "rgba(219, 39, 119, 0.5)",
+    position: { bottom: "-8%", left: "25%" },
+    delay: 0.8,
+    duration: 4.5,
   },
   {
-    name: "GitHub",
-    icon: "fab fa-github",
-    color: isDark.value ? "#FFFFFF" : "#181717",
-    position: { bottom: "-10%", left: "30%" },
+    id: 6,
+    size: 10,
+    color: isDark.value ? "rgba(99, 102, 241, 0.9)" : "rgba(79, 70, 229, 0.7)",
+    position: { bottom: "-5%", right: "-5%" },
+    delay: 1.2,
+    duration: 5,
   },
   {
-    name: "TypeScript",
-    icon: "fab fa-js-square",
-    color: "#007ACC",
-    position: { top: "15%", left: "-30%" },
+    id: 7,
+    size: 16,
+    color: isDark.value ? "rgba(168, 85, 247, 0.6)" : "rgba(147, 51, 234, 0.4)",
+    position: { top: "20%", left: "-28%" },
+    delay: 0.6,
+    duration: 6.5,
   },
   {
-    name: "Tailwind",
-    icon: "fab fa-css3-alt",
-    color: "#06B6D4",
-    position: { top: "57%", right: "-20%" },
+    id: 8,
+    size: 12,
+    color: isDark.value ? "rgba(236, 72, 153, 0.9)" : "rgba(219, 39, 119, 0.7)",
+    position: { top: "60%", right: "-18%" },
+    delay: 1.5,
+    duration: 5,
   },
   {
-    name: "Nuxt.js",
-    icon: "fab fa-vuejs",
-    color: "#00DC82",
-    position: { bottom: "-5%", right: "-8%" },
+    id: 9,
+    size: 14,
+    color: isDark.value ? "rgba(99, 102, 241, 0.8)" : "rgba(79, 70, 229, 0.6)",
+    position: { top: "-5%", left: "15%" },
+    delay: 0.4,
+    duration: 4.8,
   },
 ];
 
@@ -403,55 +423,57 @@ const openLink = (url: string) => {
                   : 'bg-gradient-to-br from-blue-50/30 to-purple-50/30'"
               ></div>
 
-              <!-- Profile Image -->
+              <!-- Profile Image with transparent background -->
               <Motion
                 :whileHover="{ scale: 1.05 }"
                 :transition="{ type: 'spring', stiffness: 300 }"
-                class="relative w-full h-full rounded-2xl overflow-hidden shadow-xl"
+                class="relative w-full h-full rounded-2xl overflow-hidden"
               >
-                <div class="w-full h-full bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 flex items-center justify-center">
+                <div class="w-full h-full flex items-center justify-center">
                   <nuxtImg
                     :src="props.profiles"
                     alt="Profile Image"
                     class="w-full h-full object-cover"
                   />
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
               </Motion>
 
-              <!-- Tech Badges -->
+              <!-- Floating Fairy Light Orbs -->
               <Motion
-                v-for="(tech, index) in visibleTechStack"
-                :key="tech.name"
+                v-for="orb in floatingOrbs"
+                :key="orb.id"
                 :initial="{ opacity: 0, scale: 0 }"
                 :animate="{
-                  opacity: 1,
-                  scale: 1,
-                  y: [0, -10, 0],
+                  opacity: [0, 1, 1, 0],
+                  scale: [0, 1.2, 1, 0.8],
+                  y: [0, -20, -10, 0],
                 }"
                 :transition="{
-                  opacity: { delay: 1.2 + index * 0.15 },
-                  scale: { delay: 1.2 + index * 0.15 },
-                  y: {
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: index * 0.5,
-                  },
+                  duration: orb.duration,
+                  repeat: Infinity,
+                  delay: orb.delay + 1.2,
+                  ease: 'easeInOut',
                 }"
-                :style="tech.position"
-                class="absolute hidden lg:block box-content px-3 py-2 backdrop-blur-md border rounded-full shadow-lg"
-                :class="isDark 
-                  ? 'bg-white/10 border-white/20' 
-                  : 'bg-white/80 border-blue-200/60'"
+                :style="orb.position"
+                class="absolute hidden lg:block pointer-events-none"
               >
-                <div class="flex items-center gap-2">
-                  <i :class="tech.icon" :style="{ color: tech.color }" class="text-lg"></i>
-                  <span 
-                    class="text-xs font-medium"
-                    :class="isDark ? 'text-white' : 'text-gray-800'"
-                  >
-                    {{ tech.name }}
-                  </span>
+                <div 
+                  class="relative rounded-full"
+                  :style="{
+                    width: `${orb.size}px`,
+                    height: `${orb.size}px`,
+                    backgroundColor: orb.color,
+                    boxShadow: `0 0 ${orb.size * 2}px ${orb.color}, 0 0 ${orb.size * 4}px ${orb.color}`,
+                  }"
+                >
+                  <!-- Inner glow -->
+                  <div 
+                    class="absolute inset-0 rounded-full animate-pulse"
+                    :style="{
+                      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                      boxShadow: `inset 0 0 ${orb.size / 2}px rgba(255, 255, 255, 0.9)`,
+                    }"
+                  />
                 </div>
               </Motion>
             </div>

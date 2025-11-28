@@ -55,7 +55,7 @@ import Certificate from "~/components/sections/certificate.vue";
     </div>
 
     <div class="relative z-10">
-      <Banner profiles="/images/prof.png" />
+      <Banner profiles="/images/profileAi6.png" />
 
       <Aboutme
         profile-image="/images/sadness.png"
